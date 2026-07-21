@@ -1,0 +1,7 @@
+{
+  "rootDirectory": "apps/web",
+  "framework": "nextjs",
+  "buildCommand": "pnpm turbo build --filter=@kananos/web",
+  "installCommand": "pnpm install",
+  "outputDirectory": ".next"
+}

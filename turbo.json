@@ -1,6 +1,19 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
+  "globalEnv": [
+    "DATABASE_URL",
+    "AUTH_SECRET",
+    "RESEND_API_KEY",
+    "R2_ACCESS_KEY_ID",
+    "R2_SECRET_ACCESS_KEY",
+    "R2_BUCKET_NAME",
+    "R2_PUBLIC_URL",
+    "NEXT_PUBLIC_MEILISEARCH_HOST",
+    "MEILISEARCH_API_KEY",
+    "NMI_API_KEY",
+    "NEXT_PUBLIC_SITE_URL"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
