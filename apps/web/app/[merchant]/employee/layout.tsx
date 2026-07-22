@@ -6,7 +6,7 @@ import { getTranslations } from "@/lib/i18n";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 
-export default async function AdminLayout({
+export default async function EmployeeLayout({
   children,
   params,
 }: {
@@ -20,7 +20,7 @@ export default async function AdminLayout({
   const session = await auth();
   if (!session?.user?.id) redirect(`/${merchant}/auth/signin`);
 
-  const adminUser = await db
+  const tenantUser = await db
     .select()
     .from(schema.tenantUsers)
     .where(
@@ -32,33 +32,27 @@ export default async function AdminLayout({
     .limit(1)
     .then((r) => r[0]);
 
-  if (!adminUser || adminUser.role !== "admin") notFound();
+  if (!tenantUser || (tenantUser.role !== "employee" && tenantUser.role !== "admin")) {
+    notFound();
+  }
 
   const { t } = await getTranslations();
 
-  const isRoot = (session.user as Record<string, unknown>).role === "root";
-
   const nav = [
-    { label: t("admin.dashboard"), href: `/${merchant}/admin` },
-    { label: t("admin.ageVerifications"), href: `/${merchant}/admin/age-verifications` },
+    { label: t("employee.dashboard"), href: `/${merchant}/employee` },
+    { label: t("employee.orders"), href: `/${merchant}/employee/orders` },
+    { label: t("employee.products"), href: `/${merchant}/employee/products` },
   ];
 
-  if (isRoot) {
-    nav.push({
-      label: "Platform",
-      href: `/${merchant}/admin/platform`,
-    });
-  }
-
   return (
-    <div className="min-h-screen bg-gray-50" dir="rtl">
+    <div className="min-h-screen bg-gray-50">
       <div className="border-b border-gray-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center gap-6 px-4 py-3">
           <Link
-            href={`/${merchant}/admin`}
+            href={`/${merchant}/employee`}
             className="text-sm font-bold text-gray-900"
           >
-            {t("admin.title")}
+            {t("employee.portal")}
           </Link>
           <nav className="flex gap-4">
             {nav.map((item) => (
@@ -71,11 +65,19 @@ export default async function AdminLayout({
               </Link>
             ))}
           </nav>
+          {tenantUser.role === "admin" && (
+            <Link
+              href={`/${merchant}/admin`}
+              className="text-sm font-medium text-amber-600 hover:text-amber-700"
+            >
+              {t("admin.title")}
+            </Link>
+          )}
           <Link
             href={`/${merchant}`}
-            className="mr-auto text-sm text-gray-400 hover:text-gray-600"
+            className="ml-auto text-sm text-gray-400 hover:text-gray-600"
           >
-            {t("admin.backToStore")}
+            {t("employee.backToStore")}
           </Link>
         </div>
       </div>

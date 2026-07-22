@@ -73,7 +73,10 @@ export async function getTranslations(): Promise<ReturnType<typeof createTransla
 
   const headersList = await getHeaders();
   const pathname = headersList.get("x-pathname") ?? "";
-  if (pathname.includes("/admin")) {
+  if (pathname.startsWith("/root")) {
+    return createTranslator("en");
+  }
+  if (pathname.includes("/admin") || pathname.includes("/employee")) {
     return createTranslator("ar");
   }
 

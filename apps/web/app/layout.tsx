@@ -32,12 +32,12 @@ function parseAcceptLanguage(header: string | null): LocaleCode {
 async function detectLocale(): Promise<LocaleCode> {
   const headersList = await headers();
   const pathname = headersList.get("x-pathname") ?? headersList.get("x-middleware-path") ?? "";
-  const isAdminPath = pathname.includes("/admin");
+  const isStaffPath = (pathname.includes("/admin") || pathname.includes("/employee")) && !pathname.startsWith("/root");
 
   const cookieStore = await cookies();
   const cookieVal = cookieStore.get("locale")?.value as LocaleCode | undefined;
 
-  if (isAdminPath) {
+  if (isStaffPath) {
     return "ar";
   }
 
