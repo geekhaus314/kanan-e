@@ -18,8 +18,6 @@ function parseAcceptLanguage(header: string | null): string | null {
 }
 
 export function middleware(request: NextRequest) {
-  const hostname = request.headers.get("host") ?? "";
-  const { pathname } = request.nextUrl;
   const response = NextResponse.next();
 
   const hasLocaleCookie = request.cookies.has(COOKIE_NAME);
@@ -35,22 +33,6 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  response.headers.set("x-pathname", pathname);
-
-  const hostParts = hostname.split(".");
-  const isSubdomain =
-    hostParts.length >= 3 && hostParts[0] !== "www" && hostParts[0] !== "kanan-e";
-
-  if (isSubdomain) {
-    const merchant = hostParts[0];
-    const url = request.nextUrl.clone();
-    url.pathname = `/${merchant}${pathname}`;
-    const rewrite = NextResponse.rewrite(url);
-    rewrite.headers.set("x-pathname", url.pathname);
-    return rewrite;
-  }
-
-  response.headers.set("x-pathname", pathname);
   return response;
 }
 
