@@ -51,21 +51,21 @@ export default async function CartPage({
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="mx-auto max-w-3xl px-4 py-8">
+    <div className="min-h-screen bg-gradient-surface">
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-black text-gray-900">Cart</h1>
-          <p className="mt-1 text-gray-500">
+          <h1 className="text-3xl font-black text-gray-100">Shopping Cart</h1>
+          <p className="mt-1 text-gray-400">
             {items.length} item{items.length !== 1 ? "s" : ""} in your cart
           </p>
         </div>
 
         {items.length === 0 ? (
-          <div className="rounded-xl border border-gray-100 bg-white p-12 text-center">
-            <p className="mb-4 text-gray-400">Your cart is empty.</p>
+          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-12 text-center">
+            <p className="mb-4 text-gray-500">Your cart is empty.</p>
             <a
               href={`/${merchant}/products`}
-              className="inline-block rounded-xl bg-amber-400 px-6 py-3 text-sm font-bold text-gray-900 hover:bg-amber-500"
+              className="btn-premium inline-block rounded-xl px-6 py-3 text-sm font-bold"
             >
               Browse Products
             </a>

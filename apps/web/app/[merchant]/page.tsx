@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { CartBadge } from "@/components/CartBadge";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export default async function MerchantHome({
   params,
@@ -16,32 +17,38 @@ export default async function MerchantHome({
   if (!tenant) notFound();
 
   return (
-    <div className="min-h-screen bg-white">
-      <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-          <Link href={`/${merchant}`} className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-400 text-sm font-black text-gray-900">
-              UD
+    <main className="min-h-screen bg-gradient-surface">
+      <div className="fixed inset-0 hero-radial pointer-events-none" />
+      <div className="fixed inset-0 grid-pattern pointer-events-none" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <header className="flex h-20 items-center justify-between border-b border-white/5">
+          <Link
+            href={`/${merchant}`}
+            className="flex items-center gap-3 group"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-brand badge-glow transition-transform group-hover:scale-105">
+              <span className="text-base font-black text-gray-900">UD</span>
             </div>
             <div className="hidden sm:block">
-              <div className="text-base font-bold leading-tight text-gray-900">
-                {tenant.name}
+              <div className="text-sm font-bold tracking-tight text-gray-100">
+                United Distribution
               </div>
-              <div className="text-xs leading-tight text-gray-400">
+              <div className="text-[10px] tracking-widest uppercase text-gray-500">
                 Wholesale Platform
               </div>
             </div>
           </Link>
-          <nav className="flex items-center gap-4">
+          <nav className="flex items-center gap-2">
             <Link
               href={`/${merchant}/products`}
-              className="text-sm font-medium text-gray-600 transition-colors hover:text-amber-600"
+              className="rounded-lg px-4 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-amber-400"
             >
               Products
             </Link>
             <Link
               href={`/${merchant}/cart`}
-              className="flex items-center text-sm font-medium text-gray-600 transition-colors hover:text-amber-600"
+              className="relative flex items-center rounded-lg px-4 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-amber-400"
             >
               Cart
               <CartBadge />
@@ -49,70 +56,196 @@ export default async function MerchantHome({
             {session?.user ? (
               <Link
                 href={`/${merchant}/account`}
-                className="text-sm font-medium text-gray-600 transition-colors hover:text-amber-600"
+                className="rounded-lg px-4 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-amber-400"
               >
                 Account
               </Link>
             ) : (
               <Link
                 href={`/${merchant}/auth/signin`}
-                className="rounded-lg bg-amber-400 px-3 py-1.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-amber-500"
+                className="btn-premium rounded-lg px-5 py-2 text-sm"
               >
                 Sign In
               </Link>
             )}
+            <LanguageSwitcher />
           </nav>
-        </div>
-      </header>
+        </header>
 
-      <main>
-        <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-          <div className="mx-auto max-w-7xl px-4 py-20 lg:py-28">
-            <div className="max-w-2xl">
-              <span className="mb-4 inline-block rounded-full bg-amber-400/20 px-3 py-1 text-xs font-medium text-amber-300">
-                #1 Wholesale Platform
-              </span>
-              <h1 className="mb-6 text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
-                Wholesale at
-                <span className="text-amber-400"> Scale.</span>
-                <br />
-                Sourced for Business.
-              </h1>
-              <p className="mb-10 max-w-xl text-lg leading-relaxed text-gray-300">
-                Thousands of verified products across tobacco, vape, accessories
-                and more. Tiered bulk pricing that grows with your business.
-              </p>
+        <section className="mx-auto mt-20 max-w-5xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/5 px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-amber-400">
+            Est. 2024 — United Distribution
+          </span>
+          <h1 className="mt-6 text-5xl font-black tracking-tight text-gray-50 sm:text-6xl lg:text-7xl">
+            Wholesale Tobacco,
+            <br />
+            <span className="text-gradient">Vape & Accessories</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400 sm:text-xl">
+            Premium bulk products for verified businesses. Competitive tier-based
+            pricing with fast, reliable fulfillment across the United States.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href={`/${merchant}/products`}
+              className="btn-premium inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base"
+            >
+              Browse Catalog →
+            </Link>
+            {session?.user ? (
               <Link
-                href={`/${merchant}/products`}
-                className="inline-flex items-center gap-2 rounded-xl bg-amber-400 px-8 py-3 font-bold text-gray-900 shadow-lg shadow-amber-400/20 transition-all hover:scale-[1.02] hover:bg-amber-500"
+                href={`/${merchant}/cart`}
+                className="btn-outline inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base"
               >
-                Browse Catalog →
+                View Cart
               </Link>
-            </div>
+            ) : (
+              <Link
+                href={`/${merchant}/auth/signin`}
+                className="btn-outline inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base"
+              >
+                Sign In to Order
+              </Link>
+            )}
           </div>
         </section>
 
-        <section className="py-20">
-          <div className="mx-auto max-w-7xl px-4 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-gray-900">
-              Ready to scale your wholesale operations?
-            </h2>
-            <p className="mx-auto mb-10 max-w-xl text-lg text-gray-500">
-              Join thousands of businesses that source from {tenant.name}.
+        <section className="mx-auto mt-24 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-3">
+          <div className="card-premium scroll-reveal rounded-2xl p-8">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 text-xl">
+              💎
+            </div>
+            <h3 className="text-base font-bold text-gray-100">
+              Premium Product Line
+            </h3>
+            <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+              Curated tobacco, vape, and accessories from top manufacturers.
+              Every product verified and compliant.
             </p>
+          </div>
+          <div className="card-premium scroll-reveal rounded-2xl p-8">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 text-xl">
+              📊
+            </div>
+            <h3 className="text-base font-bold text-gray-100">
+              Volume Pricing Tiers
+            </h3>
+            <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+              Scale your business with incremental savings. Higher volume,
+              better margins — designed for growth.
+            </p>
+          </div>
+          <div className="card-premium scroll-reveal rounded-2xl p-8">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 text-xl">
+              🛡️
+            </div>
+            <h3 className="text-base font-bold text-gray-100">
+              Compliance First
+            </h3>
+            <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+              Built-in age verification, license tracking, and audit-ready
+              records for total peace of mind.
+            </p>
+          </div>
+        </section>
+
+        <section className="mx-auto mt-24 py-16">
+          <div className="section-divider w-24 mx-auto mb-12" />
+          <h2 className="text-3xl font-black text-gray-100 sm:text-4xl">
+            Why United Distribution?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-gray-400">
+            Headquartered in St. Louis, MO — your trusted wholesale partner
+            for the smoke shop and convenience trade.
+          </p>
+          <div className="mt-12 grid max-w-3xl mx-auto grid-cols-1 gap-8 sm:grid-cols-2">
+            {[
+              {
+                icon: "🏢",
+                title: "Licensed & Insured",
+                desc: "Fully compliant Missouri DBA operating since 2024. Federally registered tobacco licensing.",
+              },
+              {
+                icon: "🚚",
+                title: "Fast Fulfillment",
+                desc: "Orders processed within 24 hours. Reliable shipping across all 50 states.",
+              },
+              {
+                icon: "🤝",
+                title: "Dedicated Support",
+                desc: "Personal account management for wholesale partners. Responsive and knowledgeable.",
+              },
+              {
+                icon: "🔐",
+                title: "Secure & Private",
+                desc: "Your business data and order history are protected and confidential.",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="card-premium scroll-reveal rounded-2xl p-6"
+              >
+                <div className="text-2xl mb-3">{item.icon}</div>
+                <h3 className="text-base font-bold text-gray-100">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto mt-24 text-center">
+          <div className="section-divider w-24 mx-auto mb-12" />
+          <h2 className="text-3xl font-black text-gray-100 sm:text-4xl">
+            Ready to Partner?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-gray-400">
+            Sign in to access wholesale pricing and place your first order. New
+            accounts approved within 1 business day.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            {session?.user ? (
+              <Link
+                href={`/${merchant}/products`}
+                className="btn-premium inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base"
+              >
+                Browse Products →
+              </Link>
+            ) : (
+              <Link
+                href={`/${merchant}/auth/signin`}
+                className="btn-premium inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base"
+              >
+                Sign In to Partner
+              </Link>
+            )}
             <Link
-              href={`/${merchant}/products`}
-              className="inline-flex items-center gap-2 rounded-xl bg-gray-900 px-8 py-3 font-bold text-white shadow-xl transition-all hover:bg-gray-800"
+              href={`/${merchant}/wholesale`}
+              className="btn-outline inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base"
             >
-              Start Ordering Now
+              Apply for Wholesale →
             </Link>
           </div>
         </section>
-      </main>
 
-      <footer className="border-t border-gray-100 bg-gray-50 py-8 text-center text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {tenant.name}. All rights reserved.
-      </footer>
-    </div>
+        <footer className="mt-24 border-t border-white/5 py-10 text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand text-sm font-black text-gray-900">
+              UD
+            </div>
+            <span className="text-sm font-semibold text-gray-500">
+              United Distribution
+            </span>
+          </div>
+          <p className="text-xs text-gray-600">
+            © {new Date().getFullYear()} Kanan Enterprises LLC. All rights
+            reserved.
+          </p>
+        </footer>
+      </div>
+    </main>
   );
 }

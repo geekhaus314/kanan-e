@@ -54,7 +54,7 @@ export function AgeVerificationGate({
     return (
       <button
         disabled
-        className="mt-4 w-full rounded-xl bg-gray-200 px-6 py-3 text-sm font-bold text-gray-400"
+        className="mt-4 w-full rounded-xl bg-white/5 px-6 py-3 text-sm font-bold text-gray-600"
       >
         Loading...
       </button>
@@ -64,11 +64,11 @@ export function AgeVerificationGate({
   return (
     <>
       {isAgeRestricted && !isVerified && (
-        <div className="mb-4 rounded-xl border border-red-200 bg-red-50 p-4">
-          <p className="text-sm font-semibold text-red-800">
+        <div className="mb-4 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
+          <p className="text-sm font-semibold text-amber-300">
             21+ Age Verification Required
           </p>
-          <p className="text-sm text-red-600">
+          <p className="mt-1 text-sm text-gray-500">
             You must verify your age before adding this item to your cart.
           </p>
         </div>
@@ -76,7 +76,7 @@ export function AgeVerificationGate({
 
       <button
         onClick={handleAddToCart}
-        className="mt-4 w-full rounded-xl bg-amber-400 px-6 py-3 text-sm font-bold text-gray-900 transition-colors hover:bg-amber-500"
+        className="btn-premium mt-4 w-full px-6 py-3 text-sm"
       >
         {isAgeRestricted && !isVerified
           ? "Verify Age to Add to Cart"

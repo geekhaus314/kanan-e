@@ -2,6 +2,7 @@
 
 > **Platform:** KananOS  
 > **Tenant #1:** United Distribution (Florissant, MO)  
+> **Owner:** Kanan Enterprises LLC — Fahmi & Fadel Abukanan  
 > **Stack:** Next.js 15, PostgreSQL (Neon), Drizzle ORM, Auth.js v5, Tailwind v4, Turborepo
 
 ---
@@ -15,22 +16,24 @@ kananos/
 ├── packages/
 │   ├── database/     ← Drizzle schema + migrations + seed
 │   ├── validations/  ← Zod schemas
-│   └── config/       ← Shared ESLint/TS config
+│   └── config/        ← Shared ESLint/TS config
 ├── docker-compose.yml  ← Local PostgreSQL 16, Redis 7, Meilisearch
 └── docs/
     ├── README.en.md  ← This file (English)
     └── README.ar.md  ← Arabic docs (non-technical, for business owners)
 ```
 
-### Multi-Tenant Routing
+### Multi-Tenant Routing (Path-Based)
 
-Subdomain → `[merchant]` route rewrite via middleware:
+Path-based routing — no subdomain config required:
 
 | URL | Route |
 |-----|-------|
-| `united.kananos.com` | `/[merchant]` → tenant = "united" |
-| `united.kananos.com/products` | `/[merchant]/products` |
-| `united.kananos.com/admin` | `/[merchant]/admin` |
+| `kanan-e.vercel.app/united` | `/[merchant]` → tenant = "united" |
+| `kanan-e.vercel.app/united/products` | `/[merchant]/products` |
+| `kanan-e.vercel.app/united/admin` | `/[merchant]/admin` |
+
+The app uses path-based routing (`/united`, `/united/products`, etc.) — not subdomain-based routing. No wildcard DNS or subdomain configuration is needed in Vercel.
 
 ---
 
@@ -76,13 +79,45 @@ pnpm dev
 App at `http://localhost:3000`.  
 Merchant storefront at `http://localhost:3000/united`.
 
-### 4. Production
+### 4. Deployment (Vercel)
 
-1. Provision Neon PostgreSQL
-2. `pnpm vercel --prod`
-3. Configure custom domain in Vercel
-4. Set env vars in Vercel dashboard
-5. `pnpm db:push && pnpm db:seed` against prod
+1. Import repo in Vercel with **Root Directory** set to `apps/web`
+2. No wildcard subdomain DNS required
+3. Set env vars in Vercel dashboard
+4. `pnpm db:push && pnpm db:seed` against prod
+5. The root `vercel.json` handles `rootDirectory` config for the monorepo
+
+---
+
+## Design System
+
+### Theme
+- **Dark premium theme** with amber/gold accents
+- Glass-morphism cards, gradient backgrounds
+- Professional typography with `Inter` font
+- Full RTL support for Arabic (`ar`) locale
+- Responsive for mobile, tablet, and desktop
+
+### Key CSS Classes
+| Class | Purpose |
+|-------|---------|
+| `bg-gradient-surface` | Main app background gradient |
+| `bg-gradient-card` | Card background gradient |
+| `bg-gradient-brand` | Amber brand gradient button |
+| `btn-premium` | Primary CTA button with glow |
+| `btn-outline` | Secondary/outline button |
+| `card-premium` | Elevated card with hover lift |
+| `hero-radial` | Subtle radial glow behind hero |
+| `grid-pattern` | Faint grid pattern background |
+| `glass` | Backdrop blur glass effect |
+| `text-gradient` | Amber gradient text effect |
+| `scroll-reveal` | Scroll-triggered fade-in animation |
+
+### Design Tokens
+- **Brand:** `#f59e0b` / `#d97706` / `#b45309` (amber scale)
+- **Surface:** `#0a0a0a` / `#141414` / `#1a1a1a` (dark scale)
+- **Text:** `#fafafa` primary / `#a3a3a3` muted / `#737373` dim
+- **Border:** `#262626` / `#333333`
 
 ---
 
@@ -90,15 +125,13 @@ Merchant storefront at `http://localhost:3000/united`.
 
 ### Locale Detection Priority
 
-1. **URL param** `?lang=ar|en`
-2. **Cookie** `locale` (set by LanguageSwitcher)
-3. **`Accept-Language` header** (browser preference, set in middleware)
-4. **IP geolocation** (future)
-5. **Role-based fallback:**
+1. **Cookie** `locale` (set by LanguageSwitcher)
+2. **`Accept-Language` header** (browser preference, set in middleware)
+3. **Role-based fallback:**
    - Admin dashboard → Arabic (`ar`)
    - Root maintenance → English (`en`)
    - Customer storefront → browser preference
-6. **Hard fallback** → `en`
+4. **Hard fallback** → `en`
 
 ### Translation Files
 
@@ -106,7 +139,7 @@ Merchant storefront at `http://localhost:3000/united`.
 locales/
 ├── en.json    ← English strings
 ├── ar.json    ← Arabic strings
-├── index.ts   ← exports locales + default locale
+└── index.ts   ← exports locales + default locale
 ```
 
 ### Usage
@@ -144,7 +177,8 @@ export function MyCmp() {
 ## Admin Panel
 
 **URL:** `/{merchant}/admin`  
-**Default Locale:** Arabic (`ar`)
+**Default Locale:** Arabic (`ar`)  
+**Theme:** Dark premium mode auto-applied for staff paths
 
 ### Sections
 
@@ -167,7 +201,7 @@ Seed creates `admin@uniteddistribution.com`.
 
 | Route | Method | Description |
 |-------|--------|-------------|
-| `/api/products` | GET | Tenant-scoped product list |
+| `/api/products` | GET | Tenant-scoped product list (with `limit`/`offset` pagination) |
 | `/api/categories` | GET | Tenant-scoped categories |
 | `/api/cart` | POST/GET/DELETE | Cart CRUD |
 | `/api/orders` | POST/GET | Order creation + history |

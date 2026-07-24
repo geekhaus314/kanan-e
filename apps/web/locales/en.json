@@ -9,29 +9,36 @@
     "admin": "Admin",
     "employee": "Employee Portal",
     "wholesale": "Wholesale",
-    "browseProducts": "Browse Products",
+    "browseProducts": "Browse Catalog",
     "loading": "Loading...",
-    "error": "An error occurred",
+    "error": "Something went wrong",
     "submit": "Submit",
     "cancel": "Cancel",
     "save": "Save",
     "delete": "Delete",
     "back": "Back",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "search": "Search products...",
+    "filter": "Filter",
+    "sort": "Sort",
+    "priceLow": "Price: Low to High",
+    "priceHigh": "Price: High to Low",
+    "newest": "Newest First"
   },
   "home": {
-    "heroTitle": "Wholesale at Scale.",
-    "heroSubtitle": "Sourced for Business.",
-    "heroDescription": "Thousands of verified products across tobacco, vape, accessories and more. Tiered bulk pricing that grows with your business.",
+    "heroTitle": "Premium Wholesale",
+    "heroSubtitle": "United Distribution",
+    "heroDescription": "The trusted wholesale platform for tobacco, vape, and accessories. Bulk pricing built for growing businesses. Premium products, verified compliance, fast fulfillment.",
+    "heroCTATitle": "Ready to scale your wholesale operations?",
+    "heroCTASubtitle": "Join United Distribution — where quality meets affordability.",
     "browseCatalog": "Browse Catalog →",
-    "ctaTitle": "Ready to scale your wholesale operations?",
-    "ctaSubtitle": "Join thousands of businesses that source from {store}.",
-    "ctaButton": "Start Ordering Now"
+    "signIn": "Sign In to Partner"
   },
   "products": {
-    "title": "Products",
-    "subtitle": "Browse our full wholesale catalog",
-    "all": "All",
+    "title": "Product Catalog",
+    "subtitle": "Premium wholesale products for your business",
+    "all": "All Products",
+    "category": "Category",
     "lowStock": "Low Stock",
     "outOfStock": "Out of Stock",
     "noProducts": "No products found.",
@@ -39,10 +46,15 @@
     "addToCart": "Add to Cart",
     "verifyAge": "Verify Age to Add to Cart",
     "ageVerificationRequired": "21+ Age Verification Required",
-    "ageVerificationMessage": "You must verify your age before adding this item to your cart."
+    "ageVerificationMessage": "You must verify your age before adding this item to your cart.",
+    "bulkPricing": "Bulk Pricing",
+    "basePrice": "Base Price",
+    "wholesalePrice": "Wholesale Price",
+    "stock": "Stock",
+    "sku": "SKU"
   },
   "cart": {
-    "title": "Cart",
+    "title": "Shopping Cart",
     "empty": "Your cart is empty.",
     "subtotal": "Subtotal",
     "shipping": "Shipping",
@@ -50,7 +62,9 @@
     "total": "Total",
     "checkout": "Proceed to Checkout",
     "remove": "Remove",
-    "itemCount": "{count} item | {count} items"
+    "itemCount": "{count} item | {count} items",
+    "continueShopping": "← Continue Shopping",
+    "quantity": "Qty"
   },
   "checkout": {
     "title": "Checkout",
@@ -69,7 +83,8 @@
     "placing": "Placing Order...",
     "paymentNote": "You will be contacted to complete payment for this order.",
     "orderSummary": "Order Summary",
-    "qty": "Qty"
+    "qty": "Qty",
+    "success": "Order placed successfully!"
   },
   "account": {
     "title": "My Account",
@@ -78,11 +93,13 @@
     "retail": "Retail",
     "wholesale": "Wholesale",
     "viewWholesale": "View Account",
-    "applyWholesale": "Apply Now →",
+    "applyWholesale": "Apply for Wholesale →",
     "orderHistory": "Order History",
     "noOrders": "No orders yet.",
     "orderNumber": "Order #{id}",
-    "placed": "Placed {date}"
+    "placed": "Placed {date}",
+    "trackOrder": "Track Order",
+    "reorder": "Reorder"
   },
   "order": {
     "title": "Order #{id}",
@@ -90,10 +107,15 @@
     "placed": "Placed {date}",
     "items": "Items",
     "total": "Total",
-    "shippingAddress": "Shipping Address"
+    "shippingAddress": "Shipping Address",
+    "status": "Status",
+    "statusPending": "Pending",
+    "statusPaid": "Paid",
+    "statusShipped": "Shipped",
+    "statusDelivered": "Delivered"
   },
   "admin": {
-    "title": "Admin",
+    "title": "Admin Dashboard",
     "dashboard": "Dashboard",
     "products": "Products",
     "ageVerifications": "Age Verifications",
@@ -107,8 +129,8 @@
     "pendingReviews": "Pending Reviews ({count})",
     "noPending": "No pending verifications.",
     "reviewHistory": "Review History",
-    "approve": "Approve ✓",
-    "reject": "Reject ✗",
+    "approve": "Approve",
+    "reject": "Reject",
     "processing": "Processing...",
     "updated": "✓ Updated!",
     "pending": "Pending",
@@ -124,7 +146,9 @@
     "orderNumber": "Order #",
     "date": "Date",
     "total": "Total",
-    "status": "Status"
+    "status": "Status",
+    "customer": "Customer",
+    "markShipped": "Mark as Shipped"
   },
   "wholesale": {
     "title": "Wholesale Registration",
@@ -148,7 +172,7 @@
     "signUpTitle": "Create Account",
     "email": "Email",
     "password": "Password",
-    "name": "Name",
+    "name": "Full Name",
     "signInButton": "Sign In",
     "signingIn": "Signing in...",
     "signUpButton": "Create Account",
@@ -183,7 +207,7 @@
     "customer": "Customer",
     "markShipped": "Mark as Shipped",
     "markDelivered": "Mark as Delivered",
-    "shipped": "Shipped ✓",
+    "shipped": "Shipped",
     "productCatalog": "Product Catalog",
     "noProducts": "No products found.",
     "sku": "SKU",

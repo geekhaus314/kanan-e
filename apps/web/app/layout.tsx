@@ -10,8 +10,8 @@ import {
 } from "@/locales";
 
 export const metadata: Metadata = {
-  title: "KananOS — Multi-Tenant Commerce Platform",
-  description: "Enterprise ecommerce platform powered by Kanan Enterprises LLC",
+  title: "KananOS — United Distribution | Premium Wholesale Platform",
+  description: "United Distribution — Kanan Enterprises LLC premium wholesale tobacco, vape, and accessories platform",
 };
 
 function parseAcceptLanguage(header: string | null): LocaleCode {
