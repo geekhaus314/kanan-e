@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
 import { db, schema } from "@kananos/database";
 import { eq } from "drizzle-orm";
 
@@ -55,9 +56,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const passwordHash = await bcrypt.hash(password, 12);
+
     const [user] = await db
       .insert(schema.users)
-      .values({ name: name || null, email })
+      .values({ name: name || null, email, passwordHash })
       .returning();
 
     if (!user) {

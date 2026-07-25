@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
+import bcrypt from "bcryptjs";
 import { db, schema } from "@kananos/database";
 import { eq, and } from "drizzle-orm";
 
@@ -40,6 +41,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           .then((r) => r[0]);
 
         if (!user) return null;
+
+        if (!user.passwordHash) return null;
+
+        const isValid = await bcrypt.compare(
+          credentials.password as string,
+          user.passwordHash
+        );
+
+        if (!isValid) return null;
 
         return {
           id: String(user.id),

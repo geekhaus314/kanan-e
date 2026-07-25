@@ -26,6 +26,9 @@ importers:
       '@kananos/validations':
         specifier: workspace:*
         version: link:../../packages/validations
+      bcryptjs:
+        specifier: ^3.0.3
+        version: 3.0.3
       drizzle-orm:
         specifier: ^0.42.0
         version: 0.42.0(gel@2.2.0)(postgres@3.4.9)
@@ -948,6 +951,10 @@ packages:
   '@types/react@19.2.17':
     resolution: {integrity: sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==}
 
+  bcryptjs@3.0.3:
+    resolution: {integrity: sha512-GlF5wPWnSa/X5LKM1o0wz0suXIINz1iHRLvTS+sLyi7XPbe5ycmYI3DlZqVGZZtDgl4DmasFg7gOB3JYbphV5g==}
+    hasBin: true
+
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
 
@@ -1854,6 +1861,8 @@ snapshots:
   '@types/react@19.2.17':
     dependencies:
       csstype: 3.2.3
+
+  bcryptjs@3.0.3: {}
 
   buffer-from@1.1.2: {}
 
