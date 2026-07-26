@@ -2,7 +2,8 @@ import { db, schema } from "@kananos/database";
 import { eq, and } from "drizzle-orm";
 import { getTenantBySlug } from "@/lib/tenant";
 import { auth } from "@/lib/auth";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+import Link from "next/link";
 import { CartContents } from "./client";
 
 export default async function CartPage({
@@ -15,34 +16,34 @@ export default async function CartPage({
   if (!tenant || !db) notFound();
 
   const session = await auth();
-  if (!session?.user?.id) redirect(`/${merchant}/auth/signin`);
+  const userId = session?.user?.id ? Number(session.user.id) : null;
 
-  const userId = Number(session.user.id);
-
-  const items = await db
-    .select({
-      id: schema.cartItems.id,
-      productId: schema.cartItems.productId,
-      quantity: schema.cartItems.quantity,
-      priceAtAddition: schema.cartItems.priceAtAddition,
-      productName: schema.products.name,
-      sku: schema.products.sku,
-      imageUrl: schema.products.imageUrl,
-      basePrice: schema.products.basePrice,
-      isAgeRestricted: schema.products.isAgeRestricted,
-      stockLevel: schema.products.stockLevel,
-    })
-    .from(schema.cartItems)
-    .innerJoin(
-      schema.products,
-      eq(schema.cartItems.productId, schema.products.id)
-    )
-    .where(
-      and(
-        eq(schema.cartItems.userId, userId),
-        eq(schema.cartItems.tenantId, tenant.id)
-      )
-    );
+  const items = userId
+    ? await db
+        .select({
+          id: schema.cartItems.id,
+          productId: schema.cartItems.productId,
+          quantity: schema.cartItems.quantity,
+          priceAtAddition: schema.cartItems.priceAtAddition,
+          productName: schema.products.name,
+          sku: schema.products.sku,
+          imageUrl: schema.products.imageUrl,
+          basePrice: schema.products.basePrice,
+          isAgeRestricted: schema.products.isAgeRestricted,
+          stockLevel: schema.products.stockLevel,
+        })
+        .from(schema.cartItems)
+        .innerJoin(
+          schema.products,
+          eq(schema.cartItems.productId, schema.products.id)
+        )
+        .where(
+          and(
+            eq(schema.cartItems.userId, userId),
+            eq(schema.cartItems.tenantId, tenant.id)
+          )
+        )
+    : [];
 
   const subtotal = items.reduce(
     (sum, item) =>
@@ -62,13 +63,25 @@ export default async function CartPage({
 
         {items.length === 0 ? (
           <div className="rounded-xl border border-white/10 bg-white/[0.03] p-12 text-center">
-            <p className="mb-4 text-gray-500">Your cart is empty.</p>
-            <a
+            <p className="mb-4 text-gray-500">
+              {session?.user?.id
+                ? "Your cart is empty."
+                : "Sign in to view your cart and save items."}
+            </p>
+            <Link
               href={`/${merchant}/products`}
               className="btn-premium inline-block rounded-xl px-6 py-3 text-sm font-bold"
             >
               Browse Products
-            </a>
+            </Link>
+            {!session?.user?.id && (
+              <Link
+                href={`/${merchant}/auth/signin`}
+                className="btn-outline ml-3 inline-block rounded-xl px-6 py-3 text-sm font-semibold"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
         ) : (
           <CartContents
