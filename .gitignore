@@ -9,6 +9,7 @@ dist/
 .turbo/
 .DS_Store
 *.log
+*.zip
 
 .vercel
 .env*
