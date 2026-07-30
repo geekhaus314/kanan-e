@@ -44,22 +44,28 @@ export default async function ProductsPage({
     )
     .orderBy(asc(schema.categories.displayOrder));
 
+  const selectedCategory = categories.find(
+    (c) => String(c.id) === category
+  );
+
   return (
     <div className="min-h-screen bg-gradient-surface">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-10">
           <h1 className="text-3xl font-black text-gray-100 sm:text-4xl">
-            Product Catalog
+            {selectedCategory ? selectedCategory.name : "Product Catalog"}
           </h1>
           <p className="mt-2 text-gray-400">
-            Browse our full wholesale catalog
+            {selectedCategory
+              ? `Browse ${selectedCategory.name.toLowerCase()} — wholesale pricing available`
+              : "Browse our full wholesale catalog"}
           </p>
         </div>
 
-        <div className="flex gap-2 overflow-x-auto pb-4">
+        <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide">
           <Link
             href={`/${merchant}/products`}
-            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-full px-4 py-1.5 text-sm font-medium whitespace-nowrap transition-colors ${
               !category
                 ? "bg-gradient-brand text-gray-900"
                 : "bg-white/5 text-gray-400 hover:bg-white/10"
@@ -83,49 +89,89 @@ export default async function ProductsPage({
         </div>
 
         <div className="grid grid-cols-2 gap-4 py-8 sm:grid-cols-3 lg:grid-cols-4">
-          {products.map((product) => (
-            <Link
-              key={product.id}
-              href={`/${merchant}/product/${product.id}`}
-              className="card-premium group rounded-xl p-4 transition-all"
-            >
-              <div className="mb-3 flex aspect-square items-center justify-center rounded-lg bg-white/5 overflow-hidden">
-                {product.imageUrl ? (
-                  <img src={product.imageUrl} alt={product.name} className="h-full w-full object-contain p-2" />
-                ) : (
-                  <span className="text-4xl">
-                    {product.isAgeRestricted ? "🚬" : "📦"}
+          {products.map((product) => {
+            const hasWholesaleDiscount =
+              parseFloat(product.wholesalePrice?.toString() || "0") <
+              parseFloat(product.basePrice.toString());
+            const isHighStock = product.stockLevel >= 400;
+            const isLowStock =
+              product.stockLevel <= 10 && product.stockLevel > 0;
+            const isOutOfStock = product.stockLevel === 0;
+
+            let badgeLabel = "";
+            let badgeStyle = "";
+            if (isOutOfStock) {
+              badgeLabel = "Out of Stock";
+              badgeStyle = "bg-red-500/90 text-white";
+            } else if (isLowStock) {
+              badgeLabel = "Low Stock";
+              badgeStyle = "bg-amber-500/90 text-gray-900";
+            } else if (hasWholesaleDiscount) {
+              badgeLabel = "Wholesale Price";
+              badgeStyle = "bg-emerald-500/90 text-gray-900";
+            } else if (isHighStock) {
+              badgeLabel = "Best Seller";
+              badgeStyle = "bg-gradient-to-r from-amber-500 to-amber-600 text-gray-900";
+            }
+
+            return (
+              <Link
+                key={product.id}
+                href={`/${merchant}/product/${product.id}`}
+                className="card-premium group relative rounded-xl p-4 transition-all hover:border-amber-500/20"
+              >
+                {badgeLabel && (
+                  <span
+                    className={`absolute left-3 top-3 z-10 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${badgeStyle}`}
+                  >
+                    {badgeLabel}
                   </span>
                 )}
-              </div>
-              <p className="mb-1 font-mono text-xs text-gray-500">
-                {product.sku}
-              </p>
-              <h3 className="mb-2 text-sm font-semibold leading-snug text-gray-100 line-clamp-2">
-                {product.name}
-              </h3>
-              <div className="flex items-center justify-between">
-                <span className="text-lg font-black text-amber-400">
-                  ${parseFloat(product.basePrice.toString()).toFixed(2)}
-                </span>
-                {product.stockLevel <= 10 && product.stockLevel > 0 && (
-                  <span className="text-xs font-medium text-amber-400">
-                    Low Stock
-                  </span>
-                )}
-                {product.stockLevel === 0 && (
-                  <span className="text-xs font-medium text-red-400">
-                    Out of Stock
-                  </span>
-                )}
-              </div>
-            </Link>
-          ))}
+                <div className="mb-3 flex aspect-square items-center justify-center rounded-lg bg-white/5 overflow-hidden">
+                  {product.imageUrl ? (
+                    <img
+                      src={product.imageUrl}
+                      alt={product.name}
+                      className="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span className="text-4xl">
+                      {product.isAgeRestricted ? "🚬" : "📦"}
+                    </span>
+                  )}
+                </div>
+                <p className="mb-1 font-mono text-[10px] text-gray-500 truncate">
+                  {product.sku}
+                </p>
+                <h3 className="mb-2 text-sm font-semibold leading-snug text-gray-100 line-clamp-2 group-hover:text-amber-400 transition-colors min-h-[2.5rem]">
+                  {product.name}
+                </h3>
+                <div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-lg font-black text-amber-400">
+                      ${parseFloat(product.basePrice.toString()).toFixed(2)}
+                    </span>
+                    <span className="text-[10px] text-gray-500">/ea</span>
+                  </div>
+                  {hasWholesaleDiscount && (
+                    <p className="mt-0.5 text-[10px] text-emerald-400 font-medium">
+                      As low as $
+                      {parseFloat(
+                        product.wholesalePrice?.toString() || "0"
+                      ).toFixed(2)}{" "}
+                      at qty 10+
+                    </p>
+                  )}
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         {products.length === 0 && (
           <div className="py-20 text-center">
-            <p className="text-gray-500">No products found.</p>
+            <p className="text-gray-500">No products found in this category.</p>
           </div>
         )}
       </div>
