@@ -119,6 +119,7 @@ async function main() {
       stockLevel: 500,
       isAgeRestricted: true,
       restrictedProductType: "tobacco",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/ca/American_duty-free_Marlboro.jpg",
     },
     {
       sku: "MARLB-GOLD-1C",
@@ -131,6 +132,7 @@ async function main() {
       stockLevel: 400,
       isAgeRestricted: true,
       restrictedProductType: "tobacco",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/ca/American_duty-free_Marlboro.jpg",
     },
     {
       sku: "CAMEL-CRUSH-1C",
@@ -143,6 +145,7 @@ async function main() {
       stockLevel: 350,
       isAgeRestricted: true,
       restrictedProductType: "tobacco",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Camel_cigarette_pack_%28softpack%29_on_white_background.jpg",
     },
     {
       sku: "NWPT-MNTHL-1C",
@@ -155,6 +158,7 @@ async function main() {
       stockLevel: 600,
       isAgeRestricted: true,
       restrictedProductType: "tobacco",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Newport_cigarettes.jpg",
     },
     {
       sku: "SWISH-RILLO-BX",
@@ -179,6 +183,7 @@ async function main() {
       stockLevel: 300,
       isAgeRestricted: true,
       restrictedProductType: "tobacco",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Blacknmildimage.jpg",
     },
     {
       sku: "ZYN-CLR-6MG-POUCH",
@@ -191,6 +196,7 @@ async function main() {
       stockLevel: 1000,
       isAgeRestricted: true,
       restrictedProductType: "nicotine_vape",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/89/ZYN_US_Nicotine_Pouches.jpg",
     },
     {
       sku: "ZYN-PEP-3MG-POUCH",
@@ -203,6 +209,7 @@ async function main() {
       stockLevel: 1000,
       isAgeRestricted: true,
       restrictedProductType: "nicotine_vape",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/89/ZYN_US_Nicotine_Pouches.jpg",
     },
     {
       sku: "GEEK-MELO-MAX",
@@ -251,6 +258,7 @@ async function main() {
       stockLevel: 120,
       isAgeRestricted: false,
       restrictedProductType: "none",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Zippo_Detail.jpg",
     },
   ];
 

@@ -49,10 +49,14 @@ export default async function ProductDetailPage({
         </Link>
 
         <div className="grid gap-12 lg:grid-cols-2">
-          <div className="flex aspect-square items-center justify-center rounded-2xl bg-white/5">
-            <span className="text-8xl">
-              {product.isAgeRestricted ? "🚬" : "📦"}
-            </span>
+          <div className="flex aspect-square items-center justify-center rounded-2xl bg-white/5 overflow-hidden">
+            {product.imageUrl ? (
+              <img src={product.imageUrl} alt={product.name} className="h-full w-full object-contain p-4" />
+            ) : (
+              <span className="text-8xl">
+                {product.isAgeRestricted ? "🚬" : "📦"}
+              </span>
+            )}
           </div>
 
           <div>

@@ -89,10 +89,14 @@ export default async function ProductsPage({
               href={`/${merchant}/product/${product.id}`}
               className="card-premium group rounded-xl p-4 transition-all"
             >
-              <div className="mb-3 flex aspect-square items-center justify-center rounded-lg bg-white/5">
-                <span className="text-4xl">
-                  {product.isAgeRestricted ? "🚬" : "📦"}
-                </span>
+              <div className="mb-3 flex aspect-square items-center justify-center rounded-lg bg-white/5 overflow-hidden">
+                {product.imageUrl ? (
+                  <img src={product.imageUrl} alt={product.name} className="h-full w-full object-contain p-2" />
+                ) : (
+                  <span className="text-4xl">
+                    {product.isAgeRestricted ? "🚬" : "📦"}
+                  </span>
+                )}
               </div>
               <p className="mb-1 font-mono text-xs text-gray-500">
                 {product.sku}

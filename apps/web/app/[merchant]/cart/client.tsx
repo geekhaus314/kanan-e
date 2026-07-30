@@ -78,10 +78,14 @@ export function CartContents({
             key={item.id}
             className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white p-4"
           >
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-gray-50">
-              <span className="text-2xl text-gray-300">
-                {item.isAgeRestricted ? "🚬" : "📦"}
-              </span>
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-gray-50 overflow-hidden">
+              {item.imageUrl ? (
+                <img src={item.imageUrl} alt={item.productName} className="h-full w-full object-contain p-1" />
+              ) : (
+                <span className="text-2xl text-gray-300">
+                  {item.isAgeRestricted ? "🚬" : "📦"}
+                </span>
+              )}
             </div>
 
             <div className="min-w-0 flex-1">
