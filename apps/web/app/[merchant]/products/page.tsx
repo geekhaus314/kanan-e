@@ -127,18 +127,18 @@ export default async function ProductsPage({
                     {badgeLabel}
                   </span>
                 )}
-                <div className="mb-3 flex aspect-square items-center justify-center rounded-lg bg-white/5 overflow-hidden">
+                <div className="mb-3 h-48 w-full overflow-hidden rounded-lg bg-gray-900">
                   {product.imageUrl ? (
                     <img
                       src={product.imageUrl}
                       alt={product.name}
-                      className="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
                   ) : (
-                    <span className="text-4xl">
-                      {product.isAgeRestricted ? "🚬" : "📦"}
-                    </span>
+                    <div className="flex h-full w-full items-center justify-center bg-gray-800 text-gray-400">
+                      <span className="text-sm font-medium">Image coming soon</span>
+                    </div>
                   )}
                 </div>
                 <p className="mb-1 font-mono text-[10px] text-gray-500 truncate">
