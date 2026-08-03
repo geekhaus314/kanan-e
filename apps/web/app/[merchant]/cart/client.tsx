@@ -78,6 +78,7 @@ export function CartContents({
             key={item.id}
             className="flex items-center gap-4 rounded-xl border border-white/10 bg-surface-card p-4"
           >
+
             <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white/5">
               <ProductImage
                 imageUrl={item.imageUrl}
@@ -85,6 +86,7 @@ export function CartContents({
                 alt={item.productName}
                 className="text-2xl"
               />
+ origin/main
             </div>
 
             <div className="min-w-0 flex-1">

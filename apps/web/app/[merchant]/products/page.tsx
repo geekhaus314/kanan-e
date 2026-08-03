@@ -31,6 +31,7 @@ export default async function ProductsPage({
     )
     .orderBy(asc(schema.categories.displayOrder));
 
+D
   // Resolve the ?category= param: accept either a numeric id or a slug.
   let resolvedCategoryId: number | null = null;
   if (category) {
@@ -64,17 +65,19 @@ export default async function ProductsPage({
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-10">
           <h1 className="text-3xl font-black text-gray-100 sm:text-4xl">
-            Product Catalog
+            {selectedCategory ? selectedCategory.name : "Product Catalog"}
           </h1>
           <p className="mt-2 text-gray-400">
-            Browse our full wholesale catalog
+            {selectedCategory
+              ? `Browse ${selectedCategory.name.toLowerCase()} — wholesale pricing available`
+              : "Browse our full wholesale catalog"}
           </p>
         </div>
 
-        <div className="flex gap-2 overflow-x-auto pb-4">
+        <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide">
           <Link
             href={`/${merchant}/products`}
-            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-full px-4 py-1.5 text-sm font-medium whitespace-nowrap transition-colors ${
               !category
                 ? "bg-gradient-brand text-gray-900"
                 : "bg-white/5 text-gray-400 hover:bg-white/10"
@@ -98,61 +101,95 @@ export default async function ProductsPage({
         </div>
 
         <div className="grid grid-cols-2 gap-4 py-8 sm:grid-cols-3 lg:grid-cols-4">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="card-premium group flex flex-col rounded-xl p-4 transition-all"
-            >
-              <Link
-                href={`/${merchant}/product/${product.id}`}
-                className="block"
+          {products.map((product) => {
+            const hasWholesaleDiscount =
+              parseFloat(product.wholesalePrice?.toString() || "0") <
+              parseFloat(product.basePrice.toString());
+            const isHighStock = product.stockLevel >= 400;
+            const isLowStock = product.stockLevel <= 10 && product.stockLevel > 0;
+            const isOutOfStock = product.stockLevel === 0;
+
+            let badgeLabel = "";
+            let badgeStyle = "";
+            if (isOutOfStock) {
+              badgeLabel = "Out of Stock";
+              badgeStyle = "bg-red-500/90 text-white";
+            } else if (isLowStock) {
+              badgeLabel = "Low Stock";
+              badgeStyle = "bg-gold-500/90 text-gray-900";
+            } else if (hasWholesaleDiscount) {
+              badgeLabel = "Wholesale Price";
+              badgeStyle = "bg-emerald-500/90 text-gray-900";
+            } else if (isHighStock) {
+              badgeLabel = "Best Seller";
+              badgeStyle = "bg-gradient-to-r from-gold-500 to-gold-600 text-gray-900";
+            }
+
+            return (
+              <div
+                key={product.id}
+                className="card-premium group relative flex flex-col rounded-xl p-4 transition-all"
               >
-                <div className="mb-3 flex aspect-square items-center justify-center overflow-hidden rounded-lg bg-white/5">
-                  <ProductImage
-                    imageUrl={product.imageUrl}
-                    fallbackSrc={brandTileFor(product.sku)}
-                    alt={product.name}
-                    className="text-4xl"
+                {badgeLabel && (
+                  <span
+                    className={`absolute left-3 top-3 z-10 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${badgeStyle}`}
+                  >
+                    {badgeLabel}
+                  </span>
+                )}
+                <Link
+                  href={`/${merchant}/product/${product.id}`}
+                  className="block"
+                >
+                  <div className="mb-3 flex aspect-square items-center justify-center overflow-hidden rounded-lg bg-white/5">
+                    <ProductImage
+                      imageUrl={product.imageUrl}
+                      fallbackSrc={brandTileFor(product.sku)}
+                      alt={product.name}
+                      className="text-4xl"
+                    />
+                  </div>
+                  <p className="mb-1 font-mono text-xs text-gray-500">
+                    {product.sku}
+                  </p>
+                  <h3 className="mb-2 text-sm font-semibold leading-snug text-gray-100 line-clamp-2 min-h-[2.5rem]">
+                    {product.name}
+                  </h3>
+                  <div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-lg font-black text-gold-400">
+                        ${parseFloat(product.basePrice.toString()).toFixed(2)}
+                      </span>
+                      <span className="text-[10px] text-gray-500">/ea</span>
+                    </div>
+                    {hasWholesaleDiscount && (
+                      <p className="mt-0.5 text-[10px] text-emerald-400 font-medium">
+                        As low as $
+                        {parseFloat(
+                          product.wholesalePrice?.toString() || "0"
+                        ).toFixed(2)}{" "}
+                        at qty 10+
+                      </p>
+                    )}
+                  </div>
+                </Link>
+                <div className="mt-3">
+                  <AddToCartButton
+                    productId={product.id}
+                    merchant={merchant}
+                    isAgeRestricted={product.isAgeRestricted}
+                    stockLevel={product.stockLevel}
+                    variant="outline"
                   />
                 </div>
-                <p className="mb-1 font-mono text-xs text-gray-500">
-                  {product.sku}
-                </p>
-                <h3 className="mb-2 text-sm font-semibold leading-snug text-gray-100 line-clamp-2">
-                  {product.name}
-                </h3>
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-black text-gold-400">
-                    ${parseFloat(product.basePrice.toString()).toFixed(2)}
-                  </span>
-                  {product.stockLevel <= 10 && product.stockLevel > 0 && (
-                    <span className="text-xs font-medium text-gold-400">
-                      Low Stock
-                    </span>
-                  )}
-                  {product.stockLevel === 0 && (
-                    <span className="text-xs font-medium text-red-400">
-                      Out of Stock
-                    </span>
-                  )}
-                </div>
-              </Link>
-              <div className="mt-3">
-                <AddToCartButton
-                  productId={product.id}
-                  merchant={merchant}
-                  isAgeRestricted={product.isAgeRestricted}
-                  stockLevel={product.stockLevel}
-                  variant="outline"
-                />
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {products.length === 0 && (
           <div className="py-20 text-center">
-            <p className="text-gray-500">No products found.</p>
+            <p className="text-gray-500">No products found in this category.</p>
           </div>
         )}
       </div>

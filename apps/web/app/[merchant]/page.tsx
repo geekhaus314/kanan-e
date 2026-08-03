@@ -1,9 +1,11 @@
 import { getTenantBySlug } from "@/lib/tenant";
 import { db, schema } from "@kananos/database";
 import { auth } from "@/lib/auth";
+import { db, schema } from "@kananos/database";
 import { notFound } from "next/navigation";
 import { eq, and, asc, desc, sql } from "drizzle-orm";
 import Link from "next/link";
+
 import { CartBadge } from "@/components/CartBadge";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ProductImage } from "@/components/ProductImage";
@@ -26,6 +28,7 @@ function brandTileFor(sku?: string | null) {
   const key = Object.keys(BRAND_TILE).find((k) => sku.toUpperCase().startsWith(k));
   return key ? BRAND_TILE[key] : "/brand-assets/brands/ud.svg";
 }
+ origin/main
 
 export default async function MerchantHome({
   params,
@@ -35,7 +38,9 @@ export default async function MerchantHome({
   const { merchant } = await params;
   const tenant = await getTenantBySlug(merchant);
   const session = await auth();
+
   if (!tenant) notFound();
+ origin/main
 
   const productsPromise = db
     ? db
@@ -71,6 +76,7 @@ export default async function MerchantHome({
   const [featured, categories] = await Promise.all([productsPromise, categoriesPromise]);
 
   return (
+
     <main className="min-h-screen bg-gradient-surface">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
         {/* HERO */}
@@ -94,6 +100,7 @@ export default async function MerchantHome({
             </Link>
             {!session?.user && (
               <Link href={`/${merchant}/auth/signin`} className="btn-outline inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base">
+ origin/main
                 Sign In for Wholesale Pricing
               </Link>
             )}
@@ -105,6 +112,7 @@ export default async function MerchantHome({
           )}
         </section>
 
+
         {/* CATEGORY GRID */}
         {categories.length > 0 && (
           <section className="mx-auto mt-24">
@@ -112,6 +120,7 @@ export default async function MerchantHome({
               <div>
                 <h2 className="text-2xl font-black text-gray-100 sm:text-3xl">Shop by Category</h2>
                 <p className="mt-1 text-sm text-gray-500">{featured.length} products live across {categories.length} categories</p>
+ origin/main
               </div>
               <Link href={`/${merchant}/products`} className="hidden text-sm font-medium text-gold-400 hover:text-gold-300 sm:block">
                 View all →
@@ -128,6 +137,7 @@ export default async function MerchantHome({
             </div>
           </section>
         )}
+
 
         {/* FEATURED PRODUCTS */}
         {featured.length > 0 && (
@@ -193,7 +203,8 @@ export default async function MerchantHome({
             Licensed tobacco reseller. 21+ verification required for restricted products.
           </p>
         </footer>
+ origin/main
       </div>
-    </main>
+    </div>
   );
 }

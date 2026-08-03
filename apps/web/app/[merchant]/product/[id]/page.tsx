@@ -52,6 +52,7 @@ export default async function ProductDetailPage({
         </Link>
 
         <div className="grid gap-12 lg:grid-cols-2">
+:apps/web/app/[merchant]/product/[id]/page.tsx
           <div className="flex aspect-square items-center justify-center overflow-hidden rounded-2xl bg-white/5">
             <ProductImage
               imageUrl={product.imageUrl}
@@ -59,6 +60,7 @@ export default async function ProductDetailPage({
               alt={product.name}
               className="text-8xl"
             />
+ origin/main:apps/web/app/[merchant]/product/[slug]/page.tsx
           </div>
 
           <div>

@@ -38,11 +38,6 @@ export function SignInForm({ merchant }: { merchant: string }) {
     signIn("google", { callbackUrl: `/${merchant}` });
   }, [merchant]);
 
-  const hasGoogleSSO = !!(
-    typeof window !== "undefined" &&
-    document.cookie.includes("AUTH_GOOGLE_ID")
-  );
-
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
