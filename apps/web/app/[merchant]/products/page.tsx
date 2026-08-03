@@ -31,7 +31,7 @@ export default async function ProductsPage({
     )
     .orderBy(asc(schema.categories.displayOrder));
 
-D
+
   // Resolve the ?category= param: accept either a numeric id or a slug.
   let resolvedCategoryId: number | null = null;
   if (category) {
@@ -43,6 +43,10 @@ D
       if (bySlug) resolvedCategoryId = bySlug.id;
     }
   }
+
+  const selectedCategory = resolvedCategoryId
+    ? categories.find((c) => c.id === resolvedCategoryId) ?? null
+    : null;
 
   const conditions = [
     eq(schema.products.tenantId, tenant.id),

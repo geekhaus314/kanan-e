@@ -60,7 +60,6 @@ export default async function ProductDetailPage({
               alt={product.name}
               className="text-8xl"
             />
- origin/main:apps/web/app/[merchant]/product/[slug]/page.tsx
           </div>
 
           <div>

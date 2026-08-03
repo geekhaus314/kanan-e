@@ -86,7 +86,6 @@ export function CartContents({
                 alt={item.productName}
                 className="text-2xl"
               />
- origin/main
             </div>
 
             <div className="min-w-0 flex-1">
