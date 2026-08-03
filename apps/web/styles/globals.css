@@ -254,3 +254,64 @@ html[dir="rtl"] .rtl-flip {
   background-image: radial-gradient(rgba(200, 160, 82, 0.35) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   PLAYFUL / GAMIFIED PALETTE + MOTION  (added for Temu/Shein-style energy)
+   Appended — original dark+gold theme above is untouched.
+   ════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --neon: #b6f500;
+  --neon-soft: #d6ff4d;
+  --hot: #ff2d6f;
+  --hot-soft: #ff5c8a;
+  --electric: #4d8bff;
+  --violet: #9b5cff;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(120vh) rotate(540deg); opacity: 0; }
+}
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes pulse-neon {
+  0%, 100% { box-shadow: 0 0 18px rgba(182, 245, 0, 0.18); }
+  50% { box-shadow: 0 0 40px rgba(182, 245, 0, 0.42); }
+}
+
+.animate-pop { animation: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.animate-wiggle { animation: wiggle 1.2s ease-in-out infinite; }
+.animate-pulse-neon { animation: pulse-neon 3s ease-in-out infinite; }
+.animate-gradient-shift { background-size: 200% 200%; animation: gradient-shift 6s ease infinite; }
+
+/* Fever-deal text/bg gradients */
+.text-fever { background: linear-gradient(90deg, #ff2d6f, #ffb347, #b6f500); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.bg-fever { background: linear-gradient(120deg, #ff2d6f, #ff7a3d, #b6f500); }
+.bg-neon-soft { background: linear-gradient(135deg, #b6f500 0%, #d6ff4d 100%); }
+.text-neon { color: #b6f500; }
+
+/* Confetti particle used by the wheel/check-in celebrations */
+.confetti {
+  position: fixed;
+  top: 0;
+  width: 10px;
+  height: 14px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 80;
+  animation: confetti-fall 1.4s ease-in forwards;
+}

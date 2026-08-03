@@ -435,3 +435,7 @@ export const userRelations = relations(users, ({ many }) => ({
   ageVerifications: many(ageVerifications),
   quoteRequests: many(quoteRequests),
 }));
+
+export * from "./loyalty";
+
+export * from "./loyalty_config";
