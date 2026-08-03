@@ -102,7 +102,7 @@ export default async function AgeVerificationsAdminPage({
                       </p>
                       <p className="text-sm text-gray-500">{user?.email}</p>
                     </div>
-                    <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-800">
+                    <span className="rounded-full bg-gold-100 px-3 py-1 text-xs font-medium text-gold-800">
                       {t("admin.pending")}
                     </span>
                   </div>

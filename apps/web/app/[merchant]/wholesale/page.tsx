@@ -55,11 +55,11 @@ export default async function WholesalePage({
             </p>
           </div>
         ) : existing?.tobaccoLicense ? (
-          <div className="rounded-xl border border-amber-100 bg-amber-50 p-6">
-            <p className="font-semibold text-amber-800">
+          <div className="rounded-xl border border-gold-100 bg-gold-50 p-6">
+            <p className="font-semibold text-gold-800">
               Application submitted — pending review.
             </p>
-            <p className="mt-1 text-sm text-amber-600">
+            <p className="mt-1 text-sm text-gold-600">
               Your tobacco license is being reviewed by our team.
             </p>
           </div>

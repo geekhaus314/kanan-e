@@ -77,7 +77,7 @@ export default async function OrderDetailPage({
           <p className="mt-1 text-sm text-gray-500">
             Placed {new Date(order.createdAt).toLocaleString()}
           </p>
-          <span className="mt-2 inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-800">
+          <span className="mt-2 inline-block rounded-full bg-gold-100 px-3 py-1 text-xs font-medium text-gold-800">
             {order.status}
           </span>
         </div>
@@ -105,7 +105,7 @@ export default async function OrderDetailPage({
             ))}
           </div>
           <div className="mt-4 border-t border-gray-100 pt-4 text-right">
-            <span className="text-lg font-black text-amber-600">
+            <span className="text-lg font-black text-gold-600">
               Total: ${parseFloat(order.totalAmount).toFixed(2)}
             </span>
           </div>

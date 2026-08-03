@@ -54,7 +54,7 @@ export default async function AdminProductsPage({
                   <td className="px-4 py-3 font-mono text-xs text-gray-500">{p.sku ?? "—"}</td>
                   <td className="px-4 py-3 font-medium text-gray-100">{p.name}</td>
                   <td className="px-4 py-3 text-gray-400">{catName(p.categoryId)}</td>
-                  <td className="px-4 py-3 font-semibold text-amber-400">${parseFloat(p.basePrice.toString()).toFixed(2)}</td>
+                  <td className="px-4 py-3 font-semibold text-gold-400">${parseFloat(p.basePrice.toString()).toFixed(2)}</td>
                   <td className="px-4 py-3 text-gray-400">{p.stockLevel}</td>
                   <td className="px-4 py-3">
                     <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${p.isActive ? "bg-green-500/15 text-green-400" : "bg-red-500/15 text-red-400"}`}>
@@ -62,7 +62,7 @@ export default async function AdminProductsPage({
                     </span>
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={`/${merchant}/admin/products/${p.id}`} className="text-sm font-medium text-amber-400 hover:underline">
+                    <Link href={`/${merchant}/admin/products/${p.id}`} className="text-sm font-medium text-gold-400 hover:underline">
                       Edit
                     </Link>
                   </td>

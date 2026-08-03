@@ -92,7 +92,7 @@ export function CartContents({
                 {item.productName}
               </p>
               <p className="text-xs text-gray-500">{item.sku}</p>
-              <p className="mt-1 text-sm font-bold text-amber-400">
+              <p className="mt-1 text-sm font-bold text-gold-400">
                 ${parseFloat(item.priceAtAddition).toFixed(2)}
               </p>
             </div>
@@ -145,7 +145,7 @@ export function CartContents({
         </div>
         <div className="mb-6 flex items-center justify-between">
           <span className="text-lg font-bold text-gray-100">Total</span>
-          <span className="text-lg font-black text-amber-400">
+          <span className="text-lg font-black text-gold-400">
             ${total.toFixed(2)}
           </span>
         </div>

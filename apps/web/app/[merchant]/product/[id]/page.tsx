@@ -46,7 +46,7 @@ export default async function ProductDetailPage({
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <Link
           href={`/${merchant}/products`}
-          className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-gray-500 transition-colors hover:text-amber-400"
+          className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-gray-500 transition-colors hover:text-gold-400"
         >
           ← Back to Products
         </Link>
@@ -77,7 +77,7 @@ export default async function ProductDetailPage({
             <div className="mb-6 rounded-xl bg-white/[0.03] border border-white/10 p-6">
               <div className="mb-4">
                 <span className="text-sm text-gray-500">Base Price</span>
-                <div className="text-3xl font-black text-amber-400">
+                <div className="text-3xl font-black text-gold-400">
                   ${basePrice.toFixed(2)}
                 </div>
               </div>
@@ -106,8 +106,8 @@ export default async function ProductDetailPage({
             </div>
 
             {product.isAgeRestricted && (
-              <div className="mb-6 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
-                <p className="text-sm font-semibold text-amber-300">
+              <div className="mb-6 rounded-xl border border-gold-500/20 bg-gold-500/5 p-4">
+                <p className="text-sm font-semibold text-gold-300">
                   21+ Age Restricted Product
                 </p>
                 <p className="text-sm text-gray-500">
@@ -143,7 +143,7 @@ export default async function ProductDetailPage({
                           ? ` — ${tier.maxQuantity}`
                           : "+"}
                       </span>
-                      <span className="font-semibold text-amber-400">
+                      <span className="font-semibold text-gold-400">
                         ${parseFloat(tier.price.toString()).toFixed(2)}
                       </span>
                     </div>

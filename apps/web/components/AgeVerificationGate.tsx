@@ -64,8 +64,8 @@ export function AgeVerificationGate({
   return (
     <>
       {isAgeRestricted && !isVerified && (
-        <div className="mb-4 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
-          <p className="text-sm font-semibold text-amber-300">
+        <div className="mb-4 rounded-xl border border-gold-500/20 bg-gold-500/5 p-4">
+          <p className="text-sm font-semibold text-gold-300">
             21+ Age Verification Required
           </p>
           <p className="mt-1 text-sm text-gray-500">

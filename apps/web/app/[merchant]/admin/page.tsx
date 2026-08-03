@@ -75,19 +75,19 @@ export default async function AdminDashboardPage({
           </div>
           <Link
             href={`/${merchant}/admin/products`}
-            className="card-premium rounded-xl p-6 transition-colors hover:border-amber-400/40"
+            className="card-premium rounded-xl p-6 transition-colors hover:border-gold-400/40"
           >
             <p className="text-sm text-gray-500">Products</p>
-            <p className="text-3xl font-black text-amber-400">
+            <p className="text-3xl font-black text-gold-400">
               {productCount}
             </p>
           </Link>
           <Link
             href={`/${merchant}/admin/age-verifications`}
-            className="card-premium rounded-xl p-6 transition-colors hover:border-amber-400/40"
+            className="card-premium rounded-xl p-6 transition-colors hover:border-gold-400/40"
           >
             <p className="text-sm text-gray-500">{t("admin.pendingVerifications")}</p>
-            <p className="text-3xl font-black text-amber-400">
+            <p className="text-3xl font-black text-gold-400">
               {pendingVerifications}
             </p>
           </Link>
@@ -131,7 +131,7 @@ export default async function AdminDashboardPage({
                         ${parseFloat(order.totalAmount).toFixed(2)}
                       </td>
                       <td className="px-4 py-3">
-                        <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-xs font-medium text-amber-300">
+                        <span className="rounded-full bg-gold-500/15 px-2 py-0.5 text-xs font-medium text-gold-300">
                           {order.status}
                         </span>
                       </td>

@@ -60,7 +60,7 @@ export function SignUpForm({ merchant }: { merchant: string }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-amber-400 focus:outline-none"
+          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gold-400 focus:outline-none"
         />
       </div>
       <div>
@@ -72,7 +72,7 @@ export function SignUpForm({ merchant }: { merchant: string }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-amber-400 focus:outline-none"
+          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gold-400 focus:outline-none"
         />
       </div>
       <div>
@@ -85,7 +85,7 @@ export function SignUpForm({ merchant }: { merchant: string }) {
           onChange={(e) => setPassword(e.target.value)}
           required
           minLength={6}
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-amber-400 focus:outline-none"
+          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gold-400 focus:outline-none"
         />
       </div>
 
@@ -98,7 +98,7 @@ export function SignUpForm({ merchant }: { merchant: string }) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-xl bg-amber-400 px-6 py-3 text-sm font-bold text-gray-900 transition-colors hover:bg-amber-500 disabled:opacity-50"
+        className="w-full rounded-xl bg-gold-400 px-6 py-3 text-sm font-bold text-gray-900 transition-colors hover:bg-gold-500 disabled:opacity-50"
       >
         {loading ? "Creating account..." : "Create Account"}
       </button>
@@ -107,7 +107,7 @@ export function SignUpForm({ merchant }: { merchant: string }) {
         Already have an account?{" "}
         <a
           href={`/${merchant}/auth/signin`}
-          className="font-medium text-amber-600 hover:underline"
+          className="font-medium text-gold-600 hover:underline"
         >
           Sign in
         </a>

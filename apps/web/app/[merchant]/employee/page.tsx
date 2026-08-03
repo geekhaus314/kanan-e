@@ -108,7 +108,7 @@ export default async function EmployeeDashboardPage({
                         ${parseFloat(order.totalAmount).toFixed(2)}
                       </td>
                       <td className="px-4 py-3">
-                        <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-xs font-medium text-amber-300">
+                        <span className="rounded-full bg-gold-500/15 px-2 py-0.5 text-xs font-medium text-gold-300">
                           {order.status}
                         </span>
                       </td>

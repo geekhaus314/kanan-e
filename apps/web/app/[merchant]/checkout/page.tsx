@@ -97,7 +97,7 @@ export default async function CheckoutPage({
               <div className="mt-4 border-t border-white/10 pt-4">
                 <div className="flex items-center justify-between font-bold text-gray-100">
                   <span>Total</span>
-                  <span className="text-lg text-amber-400">
+                  <span className="text-lg text-gold-400">
                     ${total.toFixed(2)}
                   </span>
                 </div>

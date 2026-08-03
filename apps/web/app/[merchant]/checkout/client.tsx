@@ -87,7 +87,7 @@ export function CheckoutForm({
             value={form.name}
             onChange={handleChange}
             required
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
         <div>
@@ -100,7 +100,7 @@ export function CheckoutForm({
             value={form.email}
             onChange={handleChange}
             required
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
         <div>
@@ -112,7 +112,7 @@ export function CheckoutForm({
             type="tel"
             value={form.phone}
             onChange={handleChange}
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
         <div className="col-span-2">
@@ -124,7 +124,7 @@ export function CheckoutForm({
             value={form.address}
             onChange={handleChange}
             required
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
         <div>
@@ -136,7 +136,7 @@ export function CheckoutForm({
             value={form.city}
             onChange={handleChange}
             required
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
         <div className="grid grid-cols-2 gap-2">
@@ -149,7 +149,7 @@ export function CheckoutForm({
               value={form.state}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
             />
           </div>
           <div>
@@ -161,7 +161,7 @@ export function CheckoutForm({
               value={form.zip}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
             />
           </div>
         </div>
@@ -174,13 +174,13 @@ export function CheckoutForm({
             value={form.notes}
             onChange={handleChange}
             rows={3}
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
       </div>
 
       {error && (
-        <div className="mb-4 rounded-lg bg-amber-500/10 border border-amber-500/20 p-3 text-sm text-amber-300">
+        <div className="mb-4 rounded-lg bg-gold-500/10 border border-gold-500/20 p-3 text-sm text-gold-300">
           {error}
         </div>
       )}

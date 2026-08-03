@@ -73,7 +73,7 @@ export default async function EmployeeProductsPage({
                 <tr key={product.id} className="border-b border-gray-50">
                   <td className="px-4 py-3 font-mono text-xs text-gray-500">{product.sku}</td>
                   <td className="px-4 py-3 font-medium text-gray-900">{product.name}</td>
-                  <td className="px-4 py-3 font-semibold text-amber-600">
+                  <td className="px-4 py-3 font-semibold text-gold-600">
                     ${parseFloat(product.basePrice.toString()).toFixed(2)}
                   </td>
                   <td className="px-4 py-3">

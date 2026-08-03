@@ -43,13 +43,13 @@ export default async function MerchantLayout({
           <nav className="flex items-center gap-1">
             <Link
               href={`/${merchant}/products`}
-              className="rounded-lg px-3 py-2 text-xs font-medium text-gray-400 transition-colors hover:text-amber-400"
+              className="rounded-lg px-3 py-2 text-xs font-medium text-gray-400 transition-colors hover:text-gold-400"
             >
               Products
             </Link>
             <Link
               href={`/${merchant}/cart`}
-              className="relative flex items-center rounded-lg px-3 py-2 text-xs font-medium text-gray-400 transition-colors hover:text-amber-400"
+              className="relative flex items-center rounded-lg px-3 py-2 text-xs font-medium text-gray-400 transition-colors hover:text-gold-400"
             >
               Cart
               <CartBadge />
@@ -58,13 +58,13 @@ export default async function MerchantLayout({
               <>
                 <Link
                   href={`/${merchant}/account`}
-                  className="rounded-lg px-3 py-2 text-xs font-medium text-gray-400 transition-colors hover:text-amber-400"
+                  className="rounded-lg px-3 py-2 text-xs font-medium text-gray-400 transition-colors hover:text-gold-400"
                 >
                   Account
                 </Link>
                 <Link
                   href={`/${merchant}/employee/orders`}
-                  className="rounded-lg px-3 py-2 text-xs font-medium text-gray-400 transition-colors hover:text-amber-400"
+                  className="rounded-lg px-3 py-2 text-xs font-medium text-gray-400 transition-colors hover:text-gold-400"
                 >
                   Orders
                 </Link>

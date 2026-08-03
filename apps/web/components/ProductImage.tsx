@@ -43,7 +43,7 @@ export function ProductImage({
     );
   }
   return (
-    <span className={`flex h-full w-full items-center justify-center rounded-lg bg-white/5 text-amber-500/40 ${className ?? ""}`}>
+    <span className={`flex h-full w-full items-center justify-center rounded-lg bg-white/5 text-gold-500/40 ${className ?? ""}`}>
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="3" y="3" width="18" height="18" rx="2" />
         <path d="M3 15l5-5 4 4 3-3 6 6" />

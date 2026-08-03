@@ -77,7 +77,7 @@ export function ProductForm({
     }
   };
 
-  const input = "w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-100 focus:border-amber-400 focus:outline-none";
+  const input = "w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-100 focus:border-gold-400 focus:outline-none";
   const label = "mb-1 block text-xs font-medium text-gray-500";
 
   return (

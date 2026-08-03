@@ -68,7 +68,7 @@ export default async function EmployeeLayout({
           {tenantUser.role === "admin" && (
             <Link
               href={`/${merchant}/admin`}
-              className="text-sm font-medium text-amber-600 hover:text-amber-700"
+              className="text-sm font-medium text-gold-600 hover:text-gold-700"
             >
               {t("admin.title")}
             </Link>

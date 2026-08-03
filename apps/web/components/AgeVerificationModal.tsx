@@ -105,7 +105,7 @@ export default function AgeVerificationModal({
         {step === "dob" && (
           <form onSubmit={handleSubmitDOB}>
             <div className="mb-6 text-center">
-              <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-amber-500/10 text-2xl">
+              <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gold-500/10 text-2xl">
                 🔞
               </div>
               <h2 className="text-xl font-black text-gray-100">
@@ -129,12 +129,12 @@ export default function AgeVerificationModal({
                 value={dateOfBirth}
                 onChange={(e) => setDateOfBirth(e.target.value)}
                 required
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
               />
             </div>
 
             {error && (
-              <p className="mb-4 text-sm font-medium text-amber-400">{error}</p>
+              <p className="mb-4 text-sm font-medium text-gold-400">{error}</p>
             )}
 
             <div className="flex gap-3">
@@ -186,7 +186,7 @@ export default function AgeVerificationModal({
                 onChange={(e) => setFullName(e.target.value)}
                 required
                 placeholder="Jane Smith"
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
               />
             </div>
 
@@ -203,7 +203,7 @@ export default function AgeVerificationModal({
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="123 Main St"
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
               />
             </div>
 
@@ -220,7 +220,7 @@ export default function AgeVerificationModal({
                   type="text"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
                 />
               </div>
               <div>
@@ -237,7 +237,7 @@ export default function AgeVerificationModal({
                   onChange={(e) => setState(e.target.value)}
                   maxLength={2}
                   placeholder="MO"
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
                 />
               </div>
               <div>
@@ -253,13 +253,13 @@ export default function AgeVerificationModal({
                   value={zip}
                   onChange={(e) => setZip(e.target.value)}
                   placeholder="63031"
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 placeholder-gray-600"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
                 />
               </div>
             </div>
 
             {error && (
-              <p className="mb-4 text-sm font-medium text-amber-400">{error}</p>
+              <p className="mb-4 text-sm font-medium text-gold-400">{error}</p>
             )}
 
             <div className="flex gap-3">
@@ -282,7 +282,7 @@ export default function AgeVerificationModal({
 
         {step === "submitting" && (
           <div className="py-10 text-center">
-            <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-amber-500 border-t-transparent" />
+            <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-gold-500 border-t-transparent" />
             <p className="text-sm font-medium text-gray-400">
               Verifying your identity...
             </p>

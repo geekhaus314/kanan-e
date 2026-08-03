@@ -75,7 +75,7 @@ export function WholesaleRegistrationForm({
             value={businessName}
             onChange={(e) => setBusinessName(e.target.value)}
             required
-            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-amber-400 focus:outline-none"
+            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gold-400 focus:outline-none"
           />
         </div>
         <div>
@@ -86,7 +86,7 @@ export function WholesaleRegistrationForm({
             value={taxId}
             onChange={(e) => setTaxId(e.target.value)}
             placeholder="XX-XXXXXXX"
-            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-amber-400 focus:outline-none"
+            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gold-400 focus:outline-none"
           />
         </div>
         <div>
@@ -97,7 +97,7 @@ export function WholesaleRegistrationForm({
             value={licenseNumber}
             onChange={(e) => setLicenseNumber(e.target.value)}
             required
-            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-amber-400 focus:outline-none"
+            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gold-400 focus:outline-none"
           />
         </div>
       </div>
@@ -111,7 +111,7 @@ export function WholesaleRegistrationForm({
       <button
         type="submit"
         disabled={submitting}
-        className="w-full rounded-xl bg-amber-400 px-6 py-3 text-sm font-bold text-gray-900 transition-colors hover:bg-amber-500 disabled:opacity-50"
+        className="w-full rounded-xl bg-gold-400 px-6 py-3 text-sm font-bold text-gray-900 transition-colors hover:bg-gold-500 disabled:opacity-50"
       >
         {submitting ? "Submitting..." : "Submit Application"}
       </button>

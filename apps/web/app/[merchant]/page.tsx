@@ -75,7 +75,7 @@ export default async function MerchantHome({
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
         {/* HERO */}
         <section className="mx-auto mt-16 max-w-4xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/5 px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-amber-400">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold-500/20 bg-gold-500/5 px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-gold-400">
             Est. 2024 — United Distribution · Florissant, MO
           </span>
           <h1 className="mt-6 text-5xl font-black tracking-tight text-gray-50 sm:text-6xl lg:text-7xl">
@@ -113,14 +113,14 @@ export default async function MerchantHome({
                 <h2 className="text-2xl font-black text-gray-100 sm:text-3xl">Shop by Category</h2>
                 <p className="mt-1 text-sm text-gray-500">{featured.length} products live across {categories.length} categories</p>
               </div>
-              <Link href={`/${merchant}/products`} className="hidden text-sm font-medium text-amber-400 hover:text-amber-300 sm:block">
+              <Link href={`/${merchant}/products`} className="hidden text-sm font-medium text-gold-400 hover:text-gold-300 sm:block">
                 View all →
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
               {categories.map((cat) => (
-                <Link key={cat.id} href={`/${merchant}/products?category=${cat.id}`} className="card-premium group rounded-2xl p-5 transition-all hover:border-amber-500/30">
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">▦</div>
+                <Link key={cat.id} href={`/${merchant}/products?category=${cat.id}`} className="card-premium group rounded-2xl p-5 transition-all hover:border-gold-500/30">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-gold-500/10 text-gold-400">▦</div>
                   <h3 className="text-sm font-semibold text-gray-100">{cat.name}</h3>
                   <p className="mt-1 text-xs text-gray-500">{Number(cat.productCount)} item{Number(cat.productCount) === 1 ? "" : "s"}</p>
                 </Link>
@@ -137,13 +137,13 @@ export default async function MerchantHome({
                 <h2 className="text-2xl font-black text-gray-100 sm:text-3xl">Featured Products</h2>
                 <p className="mt-1 text-sm text-gray-500">Top-stocked inventory, ready to ship</p>
               </div>
-              <Link href={`/${merchant}/products`} className="hidden text-sm font-medium text-amber-400 hover:text-amber-300 sm:block">
+              <Link href={`/${merchant}/products`} className="hidden text-sm font-medium text-gold-400 hover:text-gold-300 sm:block">
                 Full catalog →
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
               {featured.map((product) => (
-                <Link key={product.id} href={`/${merchant}/product/${product.id}`} className="card-premium group rounded-xl p-4 transition-all hover:border-amber-500/30">
+                <Link key={product.id} href={`/${merchant}/product/${product.id}`} className="card-premium group rounded-xl p-4 transition-all hover:border-gold-500/30">
                   <div className="relative mb-3 flex aspect-square items-center justify-center overflow-hidden rounded-lg bg-white/5">
                     <ProductImage imageUrl={product.imageUrl} fallbackSrc={brandTileFor(product.sku)} alt={product.name} className="text-4xl" />
                     {product.isAgeRestricted && (
@@ -153,8 +153,8 @@ export default async function MerchantHome({
                   <p className="mb-1 font-mono text-xs text-gray-500">{product.sku}</p>
                   <h3 className="mb-2 text-sm font-semibold leading-snug text-gray-100 line-clamp-2">{product.name}</h3>
                   <div className="flex items-center justify-between">
-                    <span className="text-lg font-black text-amber-400">${parseFloat(product.basePrice.toString()).toFixed(2)}</span>
-                    {product.stockLevel <= 10 && product.stockLevel > 0 && <span className="text-xs font-medium text-amber-400">Low Stock</span>}
+                    <span className="text-lg font-black text-gold-400">${parseFloat(product.basePrice.toString()).toFixed(2)}</span>
+                    {product.stockLevel <= 10 && product.stockLevel > 0 && <span className="text-xs font-medium text-gold-400">Low Stock</span>}
                     {product.stockLevel === 0 && <span className="text-xs font-medium text-red-400">Out of Stock</span>}
                   </div>
                 </Link>

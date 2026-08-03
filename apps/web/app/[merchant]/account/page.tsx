@@ -73,10 +73,10 @@ export default async function AccountPage({
           </div>
           <Link
             href={`/${merchant}/wholesale`}
-            className="rounded-xl border border-gray-100 bg-white p-4 transition-colors hover:border-amber-200"
+            className="rounded-xl border border-gray-100 bg-white p-4 transition-colors hover:border-gold-200"
           >
             <p className="text-xs text-gray-500">Wholesale</p>
-            <p className="text-lg font-black text-amber-600">
+            <p className="text-lg font-black text-gold-600">
               {tenantUser?.isWholesale
                 ? "View Account"
                 : "Apply Now →"}
@@ -93,7 +93,7 @@ export default async function AccountPage({
               <p className="mb-4 text-gray-400">No orders yet.</p>
               <Link
                 href={`/${merchant}/products`}
-                className="inline-block rounded-xl bg-amber-400 px-6 py-3 text-sm font-bold text-gray-900 hover:bg-amber-500"
+                className="inline-block rounded-xl bg-gold-400 px-6 py-3 text-sm font-bold text-gray-900 hover:bg-gold-500"
               >
                 Browse Products
               </Link>
@@ -104,7 +104,7 @@ export default async function AccountPage({
                 <Link
                   key={order.id}
                   href={`/${merchant}/account/orders/${order.id}`}
-                  className="flex items-center justify-between rounded-xl border border-gray-100 bg-white p-4 transition-colors hover:border-amber-200"
+                  className="flex items-center justify-between rounded-xl border border-gray-100 bg-white p-4 transition-colors hover:border-gold-200"
                 >
                   <div>
                     <p className="font-semibold text-gray-900">
@@ -115,10 +115,10 @@ export default async function AccountPage({
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="font-bold text-amber-600">
+                    <p className="font-bold text-gold-600">
                       ${parseFloat(order.totalAmount).toFixed(2)}
                     </p>
-                    <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">
+                    <span className="rounded-full bg-gold-100 px-2 py-0.5 text-xs font-medium text-gold-800">
                       {order.status}
                     </span>
                   </div>

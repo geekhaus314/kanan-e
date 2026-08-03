@@ -122,11 +122,11 @@ export default async function ProductsPage({
                   {product.name}
                 </h3>
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-black text-amber-400">
+                  <span className="text-lg font-black text-gold-400">
                     ${parseFloat(product.basePrice.toString()).toFixed(2)}
                   </span>
                   {product.stockLevel <= 10 && product.stockLevel > 0 && (
-                    <span className="text-xs font-medium text-amber-400">
+                    <span className="text-xs font-medium text-gold-400">
                       Low Stock
                     </span>
                   )}
