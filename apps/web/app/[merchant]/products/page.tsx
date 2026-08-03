@@ -3,6 +3,9 @@ import { eq, and, asc } from "drizzle-orm";
 import { getTenantBySlug } from "@/lib/tenant";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { brandTileFor } from "@/lib/brandTile";
+import { AddToCartButton } from "@/components/AddToCartButton";
+import { ProductImage } from "@/components/ProductImage";
 
 export default async function ProductsPage({
   params,
@@ -17,22 +20,6 @@ export default async function ProductsPage({
 
   if (!tenant || !db) notFound();
 
-  const conditions = [
-    eq(schema.products.tenantId, tenant.id),
-    eq(schema.products.isActive, true),
-  ];
-
-  if (category) {
-    conditions.push(eq(schema.products.categoryId, Number(category)));
-  }
-
-  const products = await db
-    .select()
-    .from(schema.products)
-    .where(and(...conditions))
-    .orderBy(asc(schema.products.name))
-    .limit(200);
-
   const categories = await db
     .select()
     .from(schema.categories)
@@ -43,6 +30,34 @@ export default async function ProductsPage({
       )
     )
     .orderBy(asc(schema.categories.displayOrder));
+
+  // Resolve the ?category= param: accept either a numeric id or a slug.
+  let resolvedCategoryId: number | null = null;
+  if (category) {
+    const asNumber = Number(category);
+    if (!Number.isNaN(asNumber)) {
+      resolvedCategoryId = asNumber;
+    } else {
+      const bySlug = categories.find((c) => c.slug === category);
+      if (bySlug) resolvedCategoryId = bySlug.id;
+    }
+  }
+
+  const conditions = [
+    eq(schema.products.tenantId, tenant.id),
+    eq(schema.products.isActive, true),
+  ];
+
+  if (resolvedCategoryId !== null) {
+    conditions.push(eq(schema.products.categoryId, resolvedCategoryId));
+  }
+
+  const products = await db
+    .select()
+    .from(schema.products)
+    .where(and(...conditions))
+    .orderBy(asc(schema.products.name))
+    .limit(200);
 
   return (
     <div className="min-h-screen bg-gradient-surface">
@@ -84,38 +99,54 @@ export default async function ProductsPage({
 
         <div className="grid grid-cols-2 gap-4 py-8 sm:grid-cols-3 lg:grid-cols-4">
           {products.map((product) => (
-            <Link
+            <div
               key={product.id}
-              href={`/${merchant}/product/${product.id}`}
-              className="card-premium group rounded-xl p-4 transition-all"
+              className="card-premium group flex flex-col rounded-xl p-4 transition-all"
             >
-              <div className="mb-3 flex aspect-square items-center justify-center rounded-lg bg-white/5">
-                <span className="text-4xl">
-                  {product.isAgeRestricted ? "🚬" : "📦"}
-                </span>
-              </div>
-              <p className="mb-1 font-mono text-xs text-gray-500">
-                {product.sku}
-              </p>
-              <h3 className="mb-2 text-sm font-semibold leading-snug text-gray-100 line-clamp-2">
-                {product.name}
-              </h3>
-              <div className="flex items-center justify-between">
-                <span className="text-lg font-black text-amber-400">
-                  ${parseFloat(product.basePrice.toString()).toFixed(2)}
-                </span>
-                {product.stockLevel <= 10 && product.stockLevel > 0 && (
-                  <span className="text-xs font-medium text-amber-400">
-                    Low Stock
+              <Link
+                href={`/${merchant}/product/${product.id}`}
+                className="block"
+              >
+                <div className="mb-3 flex aspect-square items-center justify-center overflow-hidden rounded-lg bg-white/5">
+                  <ProductImage
+                    imageUrl={product.imageUrl}
+                    fallbackSrc={brandTileFor(product.sku)}
+                    alt={product.name}
+                    className="text-4xl"
+                  />
+                </div>
+                <p className="mb-1 font-mono text-xs text-gray-500">
+                  {product.sku}
+                </p>
+                <h3 className="mb-2 text-sm font-semibold leading-snug text-gray-100 line-clamp-2">
+                  {product.name}
+                </h3>
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-black text-amber-400">
+                    ${parseFloat(product.basePrice.toString()).toFixed(2)}
                   </span>
-                )}
-                {product.stockLevel === 0 && (
-                  <span className="text-xs font-medium text-red-400">
-                    Out of Stock
-                  </span>
-                )}
+                  {product.stockLevel <= 10 && product.stockLevel > 0 && (
+                    <span className="text-xs font-medium text-amber-400">
+                      Low Stock
+                    </span>
+                  )}
+                  {product.stockLevel === 0 && (
+                    <span className="text-xs font-medium text-red-400">
+                      Out of Stock
+                    </span>
+                  )}
+                </div>
+              </Link>
+              <div className="mt-3">
+                <AddToCartButton
+                  productId={product.id}
+                  merchant={merchant}
+                  isAgeRestricted={product.isAgeRestricted}
+                  stockLevel={product.stockLevel}
+                  variant="outline"
+                />
               </div>
-            </Link>
+            </div>
           ))}
         </div>
 

@@ -59,7 +59,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={dir}>
-      <body className="min-h-screen bg-white text-gray-900 antialiased">
+      <body className="min-h-screen bg-surface text-gray-100 antialiased">
         <LocaleProvider initialLocale={locale}>
           {children}
         </LocaleProvider>

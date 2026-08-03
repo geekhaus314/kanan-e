@@ -3,15 +3,18 @@ import { eq, and, asc } from "drizzle-orm";
 import { getTenantBySlug } from "@/lib/tenant";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { brandTileFor } from "@/lib/brandTile";
+import { AddToCartButton } from "@/components/AddToCartButton";
+import { ProductImage } from "@/components/ProductImage";
 
 export default async function ProductDetailPage({
   params,
 }: {
-  params: Promise<{ merchant: string; slug: string }>;
+  params: Promise<{ merchant: string; id: string }>;
 }) {
-  const { merchant, slug } = await params;
+  const { merchant, id } = await params;
   const tenant = await getTenantBySlug(merchant);
-  const productId = Number(slug);
+  const productId = Number(id);
 
   if (!tenant || !db || isNaN(productId)) notFound();
 
@@ -49,10 +52,13 @@ export default async function ProductDetailPage({
         </Link>
 
         <div className="grid gap-12 lg:grid-cols-2">
-          <div className="flex aspect-square items-center justify-center rounded-2xl bg-white/5">
-            <span className="text-8xl">
-              {product.isAgeRestricted ? "🚬" : "📦"}
-            </span>
+          <div className="flex aspect-square items-center justify-center overflow-hidden rounded-2xl bg-white/5">
+            <ProductImage
+              imageUrl={product.imageUrl}
+              fallbackSrc={brandTileFor(product.sku)}
+              alt={product.name}
+              className="text-8xl"
+            />
           </div>
 
           <div>
@@ -145,6 +151,18 @@ export default async function ProductDetailPage({
                 </div>
               </div>
             )}
+
+            <div className="pt-2">
+              <AddToCartButton
+                productId={product.id}
+                merchant={merchant}
+                isAgeRestricted={product.isAgeRestricted}
+                stockLevel={product.stockLevel}
+              />
+              <p className="mt-2 text-center text-xs text-gray-600">
+                Sign in to add items to your wholesale cart.
+              </p>
+            </div>
           </div>
         </div>
       </div>

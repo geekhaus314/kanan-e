@@ -1,0 +1,2 @@
+CANONICAL_WORKDIR=/mnt/kali-drive/kananos
+EXTERNAL_DRIVE=easystore (WSL mount: /mnt/kali-drive)

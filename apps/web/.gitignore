@@ -1,1 +1,4 @@
 .vercel
+
+# uploaded product images (binary, do not commit)
+/public/uploads/

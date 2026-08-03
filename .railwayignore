@@ -1,0 +1,5 @@
+kananos (2).zip
+*.zip
+node_modules
+.next
+.turbo
