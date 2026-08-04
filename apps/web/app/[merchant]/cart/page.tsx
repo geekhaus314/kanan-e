@@ -55,15 +55,15 @@ export default async function CartPage({
     <div className="min-h-screen bg-gradient-surface">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-black text-gray-100">Shopping Cart</h1>
-          <p className="mt-1 text-gray-400">
+          <h1 className="text-3xl font-black text-gray-900">Shopping Cart</h1>
+          <p className="mt-1 text-gray-500">
             {items.length} item{items.length !== 1 ? "s" : ""} in your cart
           </p>
         </div>
 
         {items.length === 0 ? (
-          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-12 text-center">
-            <p className="mb-4 text-gray-500">
+          <div className="rounded-xl border border-gray-200 bg-gray-50 p-12 text-center">
+            <p className="mb-4 text-gray-400">
               {session?.user?.id
                 ? "Your cart is empty."
                 : "Sign in to view your cart and save items."}

@@ -41,9 +41,9 @@ export default async function EditProductPage({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-surface">
+    <div className="min-h-screen bg-white">
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-        <h1 className="mb-8 text-3xl font-black text-gray-100">Edit Product</h1>
+        <h1 className="mb-8 text-3xl font-black text-gray-900">Edit Product</h1>
         <a href={`/{merchant}/admin/products/{id}/images`} className="mb-6 inline-block text-sm text-blue-400 hover:underline">Manage photos &rarr;</a>
         <ProductForm merchant={merchant} categories={categories} brands={brands} initial={initial} productId={product.id} />
       </div>

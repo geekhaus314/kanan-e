@@ -82,7 +82,7 @@ export default async function EmployeeOrdersPage({
                       <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                         order.status === "shipped" ? "bg-blue-100 text-blue-800" :
                         order.status === "delivered" ? "bg-green-100 text-green-800" :
-                        "bg-gold-100 text-gold-800"
+                        "bg-brand-100 text-brand-800"
                       }`}>
                         {order.status}
                       </span>

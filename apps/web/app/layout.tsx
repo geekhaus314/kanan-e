@@ -32,14 +32,9 @@ function parseAcceptLanguage(header: string | null): LocaleCode {
 async function detectLocale(): Promise<LocaleCode> {
   const headersList = await headers();
   const pathname = headersList.get("x-pathname") ?? headersList.get("x-middleware-path") ?? "";
-  const isStaffPath = (pathname.includes("/admin") || pathname.includes("/employee")) && !pathname.startsWith("/root");
 
   const cookieStore = await cookies();
   const cookieVal = cookieStore.get("locale")?.value as LocaleCode | undefined;
-
-  if (isStaffPath) {
-    return "ar";
-  }
 
   if (cookieVal && (supportedLocales as string[]).includes(cookieVal)) {
     return cookieVal;
@@ -59,7 +54,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={dir}>
-      <body className="min-h-screen bg-surface text-gray-100 antialiased">
+      <body className="min-h-screen bg-white text-gray-900 antialiased">
         <LocaleProvider initialLocale={locale}>
           {children}
         </LocaleProvider>

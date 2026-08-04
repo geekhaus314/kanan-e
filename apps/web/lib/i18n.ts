@@ -1,10 +1,9 @@
 import {
-  locales,
-  type LocaleCode,
-  type TranslationDict,
   supportedLocales,
   defaultLocale,
+  type LocaleCode,
 } from "@/locales";
+import * as localeData from "@/locales";
 
 export function parseAcceptLanguage(header: string | null): LocaleCode {
   if (!header) return defaultLocale;
@@ -51,7 +50,7 @@ function resolveKey(
 }
 
 export function createTranslator(locale: LocaleCode) {
-  const dict = locales[locale] as unknown as Record<string, unknown>;
+  const dict = (localeData as Record<string, unknown>)[locale] as Record<string, unknown> ?? {};
 
   function t(path: string, vars?: Record<string, string | number>): string {
     let result = resolveKey(dict, path);
@@ -71,31 +70,12 @@ export function createTranslator(locale: LocaleCode) {
 export async function getTranslations(): Promise<ReturnType<typeof createTranslator>> {
   const { cookies: getCookies, headers: getHeaders } = await import("next/headers");
 
-  const headersList = await getHeaders();
-  const pathname = headersList.get("x-pathname") ?? "";
-  if (pathname.startsWith("/root")) {
-    return createTranslator("en");
-  }
-  if (pathname.includes("/admin") || pathname.includes("/employee")) {
-    return createTranslator("ar");
-  }
-
   const cookieStore = await getCookies();
   const raw = cookieStore.get("locale")?.value;
   const locale = (raw && (supportedLocales as string[]).includes(raw)
     ? raw
     : defaultLocale) as LocaleCode;
   return createTranslator(locale);
-}
-
-export async function setAdminLocale(): Promise<void> {
-  const { cookies: getCookies } = await import("next/headers");
-  const cookieStore = await getCookies();
-  cookieStore.set("locale", "ar", {
-    path: "/",
-    maxAge: 60 * 60 * 24 * 365,
-    sameSite: "lax",
-  });
 }
 
 export { supportedLocales, defaultLocale, type LocaleCode };

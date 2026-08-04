@@ -24,9 +24,9 @@ export default async function NewProductPage({
   ]);
 
   return (
-    <div className="min-h-screen bg-gradient-surface">
+    <div className="min-h-screen bg-white">
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-        <h1 className="mb-8 text-3xl font-black text-gray-100">New Product</h1>
+        <h1 className="mb-8 text-3xl font-black text-gray-900">New Product</h1>
         <ProductForm merchant={merchant} categories={categories} brands={brands} />
       </div>
     </div>

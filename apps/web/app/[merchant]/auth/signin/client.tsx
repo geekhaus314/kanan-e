@@ -41,7 +41,7 @@ export function SignInForm({ merchant }: { merchant: string }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="mb-1 block text-xs font-medium text-gray-500">
+        <label className="mb-1 block text-xs font-medium text-gray-600">
           Email
         </label>
         <input
@@ -49,11 +49,11 @@ export function SignInForm({ merchant }: { merchant: string }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gold-400 focus:outline-none"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20 focus:outline-none"
         />
       </div>
       <div>
-        <label className="mb-1 block text-xs font-medium text-gray-500">
+        <label className="mb-1 block text-xs font-medium text-gray-600">
           Password
         </label>
         <input
@@ -61,12 +61,12 @@ export function SignInForm({ merchant }: { merchant: string }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gold-400 focus:outline-none"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20 focus:outline-none"
         />
       </div>
 
       {error && (
-        <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600">
+        <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-600">
           {error}
         </div>
       )}
@@ -74,7 +74,7 @@ export function SignInForm({ merchant }: { merchant: string }) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-xl bg-gold-400 px-6 py-3 text-sm font-bold text-gray-900 transition-colors hover:bg-gold-500 disabled:opacity-50"
+        className="w-full rounded-xl bg-brand-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-700 disabled:opacity-50"
       >
         {loading ? "Signing in..." : "Sign In"}
       </button>
@@ -118,7 +118,7 @@ export function SignInForm({ merchant }: { merchant: string }) {
         Don&apos;t have an account?{" "}
         <a
           href={`/${merchant}/auth/signup`}
-          className="font-medium text-gold-600 hover:underline"
+          className="font-medium text-brand-600 hover:text-brand-500"
         >
           Sign up
         </a>

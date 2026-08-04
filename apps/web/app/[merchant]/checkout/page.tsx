@@ -53,8 +53,8 @@ export default async function CheckoutPage({
     <div className="min-h-screen bg-gradient-surface">
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-black text-gray-100">Checkout</h1>
-          <p className="mt-1 text-gray-400">Complete your order</p>
+          <h1 className="text-3xl font-black text-gray-900">Checkout</h1>
+          <p className="mt-1 text-gray-500">Complete your order</p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-5">
@@ -72,8 +72,8 @@ export default async function CheckoutPage({
           </div>
 
           <div className="lg:col-span-2">
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
-              <h2 className="mb-4 text-lg font-bold text-gray-100">
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <h2 className="mb-4 text-lg font-bold text-gray-900">
                 Order Summary
               </h2>
               <div className="space-y-3">
@@ -83,21 +83,21 @@ export default async function CheckoutPage({
                     className="flex items-center justify-between text-sm"
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-medium text-gray-100">
+                      <p className="truncate font-medium text-gray-900">
                         {item.productName}
                       </p>
-                      <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
+                      <p className="text-xs text-gray-400">Qty: {item.quantity}</p>
                     </div>
-                    <span className="ml-4 font-semibold text-gray-100">
+                    <span className="ml-4 font-semibold text-gray-900">
                       ${(parseFloat(item.priceAtAddition) * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
               </div>
-              <div className="mt-4 border-t border-white/10 pt-4">
-                <div className="flex items-center justify-between font-bold text-gray-100">
+              <div className="mt-4 border-t border-gray-200 pt-4">
+                <div className="flex items-center justify-between font-bold text-gray-900">
                   <span>Total</span>
-                  <span className="text-lg text-gold-400">
+                  <span className="text-lg text-brand-600">
                     ${total.toFixed(2)}
                   </span>
                 </div>

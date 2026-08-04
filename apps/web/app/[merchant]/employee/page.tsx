@@ -60,55 +60,55 @@ export default async function EmployeeDashboardPage({
   ]);
 
   return (
-    <div className="min-h-screen bg-gradient-surface">
+    <div className="min-h-screen bg-white">
       <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-        <h1 className="mb-8 text-3xl font-black text-gray-100">
+        <h1 className="mb-8 text-3xl font-black text-gray-900">
           {t("employee.dashboard")}
         </h1>
 
         <div className="mb-8 grid gap-4 sm:grid-cols-2">
           <div className="card-premium rounded-xl p-6">
-            <p className="text-sm text-gray-500">{t("employee.orders")}</p>
-            <p className="text-3xl font-black text-gray-100">{orderCount}</p>
+            <p className="text-sm text-gray-400">{t("employee.orders")}</p>
+            <p className="text-3xl font-black text-gray-900">{orderCount}</p>
           </div>
           <div className="card-premium rounded-xl p-6">
-            <p className="text-sm text-gray-500">{t("employee.products")}</p>
-            <p className="text-3xl font-black text-gray-100">{productCount}</p>
+            <p className="text-sm text-gray-400">{t("employee.products")}</p>
+            <p className="text-3xl font-black text-gray-900">{productCount}</p>
           </div>
         </div>
 
         <div>
-          <h2 className="mb-4 text-lg font-bold text-gray-100">
+          <h2 className="mb-4 text-lg font-bold text-gray-900">
             {t("employee.recentOrders")}
           </h2>
 
           {recentOrders.length === 0 ? (
             <div className="card-premium rounded-xl p-12 text-center">
-              <p className="text-gray-500">{t("employee.noOrders")}</p>
+              <p className="text-gray-400">{t("employee.noOrders")}</p>
             </div>
           ) : (
-            <div className="overflow-x-auto rounded-xl border border-white/10 bg-white/[0.03]">
+            <div className="overflow-x-auto rounded-xl border border-gray-200 bg-gray-50">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="px-4 py-3 text-left font-medium text-gray-500">{t("employee.orderNumber")}</th>
-                    <th className="px-4 py-3 text-left font-medium text-gray-500">{t("employee.date")}</th>
-                    <th className="px-4 py-3 text-left font-medium text-gray-500">{t("employee.total")}</th>
-                    <th className="px-4 py-3 text-left font-medium text-gray-500">{t("employee.status")}</th>
+                  <tr className="border-b border-gray-200">
+                    <th className="px-4 py-3 text-left font-medium text-gray-400">{t("employee.orderNumber")}</th>
+                    <th className="px-4 py-3 text-left font-medium text-gray-400">{t("employee.date")}</th>
+                    <th className="px-4 py-3 text-left font-medium text-gray-400">{t("employee.total")}</th>
+                    <th className="px-4 py-3 text-left font-medium text-gray-400">{t("employee.status")}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {recentOrders.map((order) => (
-                    <tr key={order.id} className="border-b border-white/5">
-                      <td className="px-4 py-3 font-medium text-gray-100">#{order.id}</td>
-                      <td className="px-4 py-3 text-gray-500">
+                    <tr key={order.id} className="border-b border-gray-200">
+                      <td className="px-4 py-3 font-medium text-gray-900">#{order.id}</td>
+                      <td className="px-4 py-3 text-gray-400">
                         {new Date(order.createdAt).toLocaleDateString()}
                       </td>
-                      <td className="px-4 py-3 font-semibold text-gray-100">
+                      <td className="px-4 py-3 font-semibold text-gray-900">
                         ${parseFloat(order.totalAmount).toFixed(2)}
                       </td>
                       <td className="px-4 py-3">
-                        <span className="rounded-full bg-gold-500/15 px-2 py-0.5 text-xs font-medium text-gold-300">
+                        <span className="rounded-full bg-brand-500/10 px-2 py-0.5 text-xs font-medium text-brand-600">
                           {order.status}
                         </span>
                       </td>

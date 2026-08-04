@@ -46,14 +46,13 @@ export default async function ProductDetailPage({
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <Link
           href={`/${merchant}/products`}
-          className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-gray-500 transition-colors hover:text-gold-400"
+          className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-gray-400 transition-colors hover:text-brand-600"
         >
           ← Back to Products
         </Link>
 
         <div className="grid gap-12 lg:grid-cols-2">
-:apps/web/app/[merchant]/product/[id]/page.tsx
-          <div className="flex aspect-square items-center justify-center overflow-hidden rounded-2xl bg-white/5">
+          <div className="flex aspect-square items-center justify-center overflow-hidden rounded-2xl bg-gray-50">
             <ProductImage
               imageUrl={product.imageUrl}
               fallbackSrc={brandTileFor(product.sku)}
@@ -63,39 +62,39 @@ export default async function ProductDetailPage({
           </div>
 
           <div>
-            <p className="mb-2 font-mono text-sm text-gray-500">
+            <p className="mb-2 font-mono text-sm text-gray-400">
               {product.sku}
             </p>
-            <h1 className="mb-4 text-3xl font-black text-gray-100 sm:text-4xl">
+            <h1 className="mb-4 text-3xl font-black text-gray-900 sm:text-4xl">
               {product.name}
             </h1>
             {product.description && (
-              <p className="mb-6 text-gray-400 leading-relaxed">
+              <p className="mb-6 text-gray-500 leading-relaxed">
                 {product.description}
               </p>
             )}
 
-            <div className="mb-6 rounded-xl bg-white/[0.03] border border-white/10 p-6">
+            <div className="mb-6 rounded-xl bg-gray-50 border border-gray-200 p-6">
               <div className="mb-4">
-                <span className="text-sm text-gray-500">Base Price</span>
-                <div className="text-3xl font-black text-gold-400">
+                <span className="text-sm text-gray-400">Base Price</span>
+                <div className="text-3xl font-black text-brand-600">
                   ${basePrice.toFixed(2)}
                 </div>
               </div>
 
               {product.wholesalePrice && (
                 <div className="mb-4">
-                  <span className="text-sm text-gray-500">Wholesale Price</span>
-                  <div className="text-xl font-bold text-green-400">
+                  <span className="text-sm text-gray-400">Wholesale Price</span>
+                  <div className="text-xl font-bold text-brand-600">
                     ${parseFloat(product.wholesalePrice.toString()).toFixed(2)}
                   </div>
                 </div>
               )}
 
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-500">Stock:</span>
+                <span className="text-sm text-gray-400">Stock:</span>
                 {product.stockLevel > 0 ? (
-                  <span className="font-semibold text-green-400">
+                  <span className="font-semibold text-brand-600">
                     {product.stockLevel} units
                   </span>
                 ) : (
@@ -108,22 +107,22 @@ export default async function ProductDetailPage({
 
             {product.isAgeRestricted && (
               <div className="mb-6 rounded-xl border border-gold-500/20 bg-gold-500/5 p-4">
-                <p className="text-sm font-semibold text-gold-300">
+                <p className="text-sm font-semibold text-brand-500">
                   21+ Age Restricted Product
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400">
                   Age verification required at checkout.
                 </p>
               </div>
             )}
 
             {bulkPricing.length > 0 && (
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
-                <h3 className="mb-3 font-bold text-gray-100">
+              <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+                <h3 className="mb-3 font-bold text-gray-900">
                   Bulk Pricing Tiers
                 </h3>
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between text-sm font-medium text-gray-500 pb-2 border-b border-white/5">
+                  <div className="flex items-center justify-between text-sm font-medium text-gray-400 pb-2 border-b border-gray-200">
                     <span>Quantity</span>
                     <span>Price Per Unit</span>
                   </div>
@@ -144,7 +143,7 @@ export default async function ProductDetailPage({
                           ? ` — ${tier.maxQuantity}`
                           : "+"}
                       </span>
-                      <span className="font-semibold text-gold-400">
+                      <span className="font-semibold text-brand-600">
                         ${parseFloat(tier.price.toString()).toFixed(2)}
                       </span>
                     </div>
@@ -160,7 +159,7 @@ export default async function ProductDetailPage({
                 isAgeRestricted={product.isAgeRestricted}
                 stockLevel={product.stockLevel}
               />
-              <p className="mt-2 text-center text-xs text-gray-600">
+              <p className="mt-2 text-center text-xs text-gray-400">
                 Sign in to add items to your wholesale cart.
               </p>
             </div>

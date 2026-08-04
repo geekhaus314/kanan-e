@@ -53,8 +53,8 @@ export function CartContents({
 
   if (localItems.length === 0) {
     return (
-      <div className="rounded-xl border border-white/10 bg-surface-card p-12 text-center">
-        <p className="mb-4 text-gray-400">Your cart is empty.</p>
+      <div className="rounded-xl border border-gray-200 bg-surface-card p-12 text-center">
+        <p className="mb-4 text-gray-500">Your cart is empty.</p>
         <a
           href={`/${merchant}/products`}
           className="inline-block rounded-xl bg-gradient-brand px-6 py-3 text-sm font-bold text-gray-900 hover:opacity-90"
@@ -76,10 +76,10 @@ export function CartContents({
         {localItems.map((item) => (
           <div
             key={item.id}
-            className="flex items-center gap-4 rounded-xl border border-white/10 bg-surface-card p-4"
+            className="flex items-center gap-4 rounded-xl border border-gray-200 bg-surface-card p-4"
           >
 
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white/5">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-50">
               <ProductImage
                 imageUrl={item.imageUrl}
                 fallbackSrc={brandTileFor(item.sku)}
@@ -89,11 +89,11 @@ export function CartContents({
             </div>
 
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-100">
+              <p className="truncate text-sm font-semibold text-gray-900">
                 {item.productName}
               </p>
-              <p className="text-xs text-gray-500">{item.sku}</p>
-              <p className="mt-1 text-sm font-bold text-gold-400">
+              <p className="text-xs text-gray-400">{item.sku}</p>
+              <p className="mt-1 text-sm font-bold text-brand-600">
                 ${parseFloat(item.priceAtAddition).toFixed(2)}
               </p>
             </div>
@@ -102,30 +102,30 @@ export function CartContents({
               <button
                 onClick={() => handleQuantityChange(item.id, -1)}
                 disabled={item.quantity <= 1}
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-gray-300 hover:bg-white/5 disabled:opacity-30"
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-300 hover:bg-gray-50 disabled:opacity-30"
               >
                 −
               </button>
-              <span className="w-8 text-center text-sm font-bold text-gray-100">
+              <span className="w-8 text-center text-sm font-bold text-gray-900">
                 {item.quantity}
               </span>
               <button
                 onClick={() => handleQuantityChange(item.id, 1)}
                 disabled={item.quantity >= item.stockLevel}
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-gray-300 hover:bg-white/5 disabled:opacity-30"
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-300 hover:bg-gray-50 disabled:opacity-30"
               >
                 +
               </button>
             </div>
 
-            <p className="w-20 text-right text-sm font-bold text-gray-100">
+            <p className="w-20 text-right text-sm font-bold text-gray-900">
               ${(parseFloat(item.priceAtAddition) * item.quantity).toFixed(2)}
             </p>
 
             <button
               onClick={() => handleRemove(item.id)}
               disabled={removingId === item.id}
-              className="p-2 text-gray-500 hover:text-red-400 disabled:opacity-50"
+              className="p-2 text-gray-400 hover:text-red-400 disabled:opacity-50"
             >
               ✕
             </button>
@@ -133,20 +133,20 @@ export function CartContents({
         ))}
       </div>
 
-      <div className="mt-6 rounded-xl border border-white/10 bg-surface-card p-6">
+      <div className="mt-6 rounded-xl border border-gray-200 bg-surface-card p-6">
         <div className="mb-2 flex items-center justify-between text-sm">
-          <span className="text-gray-400">Subtotal</span>
-          <span className="font-semibold text-gray-100">
+          <span className="text-gray-500">Subtotal</span>
+          <span className="font-semibold text-gray-900">
             ${total.toFixed(2)}
           </span>
         </div>
-        <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4 text-sm">
-          <span className="text-gray-400">Shipping</span>
-          <span className="font-semibold text-gray-100">Calculated at checkout</span>
+        <div className="mb-4 flex items-center justify-between border-b border-gray-200 pb-4 text-sm">
+          <span className="text-gray-500">Shipping</span>
+          <span className="font-semibold text-gray-900">Calculated at checkout</span>
         </div>
         <div className="mb-6 flex items-center justify-between">
-          <span className="text-lg font-bold text-gray-100">Total</span>
-          <span className="text-lg font-black text-gold-400">
+          <span className="text-lg font-bold text-gray-900">Total</span>
+          <span className="text-lg font-black text-brand-600">
             ${total.toFixed(2)}
           </span>
         </div>

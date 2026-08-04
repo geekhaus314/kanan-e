@@ -72,14 +72,14 @@ export function CheckoutForm({
   );
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
-      <h2 className="mb-4 text-lg font-bold text-gray-100">
+    <form onSubmit={handleSubmit} className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+      <h2 className="mb-4 text-lg font-bold text-gray-900">
         Shipping Information
       </h2>
 
       <div className="mb-4 grid grid-cols-2 gap-4">
         <div className="col-span-2">
-          <label className="mb-1 block text-xs font-medium text-gray-400">
+          <label className="mb-1 block text-xs font-medium text-gray-500">
             Full Name
           </label>
           <input
@@ -87,11 +87,11 @@ export function CheckoutForm({
             value={form.name}
             onChange={handleChange}
             required
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
         <div>
-          <label className="mb-1 block text-xs font-medium text-gray-400">
+          <label className="mb-1 block text-xs font-medium text-gray-500">
             Email
           </label>
           <input
@@ -100,11 +100,11 @@ export function CheckoutForm({
             value={form.email}
             onChange={handleChange}
             required
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
         <div>
-          <label className="mb-1 block text-xs font-medium text-gray-400">
+          <label className="mb-1 block text-xs font-medium text-gray-500">
             Phone
           </label>
           <input
@@ -112,11 +112,11 @@ export function CheckoutForm({
             type="tel"
             value={form.phone}
             onChange={handleChange}
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
         <div className="col-span-2">
-          <label className="mb-1 block text-xs font-medium text-gray-400">
+          <label className="mb-1 block text-xs font-medium text-gray-500">
             Address
           </label>
           <input
@@ -124,11 +124,11 @@ export function CheckoutForm({
             value={form.address}
             onChange={handleChange}
             required
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
         <div>
-          <label className="mb-1 block text-xs font-medium text-gray-400">
+          <label className="mb-1 block text-xs font-medium text-gray-500">
             City
           </label>
           <input
@@ -136,12 +136,12 @@ export function CheckoutForm({
             value={form.city}
             onChange={handleChange}
             required
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="mb-1 block text-xs font-medium text-gray-400">
+            <label className="mb-1 block text-xs font-medium text-gray-500">
               State
             </label>
             <input
@@ -149,11 +149,11 @@ export function CheckoutForm({
               value={form.state}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
+              className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-gray-400">
+            <label className="mb-1 block text-xs font-medium text-gray-500">
               ZIP
             </label>
             <input
@@ -161,12 +161,12 @@ export function CheckoutForm({
               value={form.zip}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
+              className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
             />
           </div>
         </div>
         <div className="col-span-2">
-          <label className="mb-1 block text-xs font-medium text-gray-400">
+          <label className="mb-1 block text-xs font-medium text-gray-500">
             Order Notes (optional)
           </label>
           <textarea
@@ -174,13 +174,13 @@ export function CheckoutForm({
             value={form.notes}
             onChange={handleChange}
             rows={3}
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
+            className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 focus:border-gold-500/50 focus:outline-none focus:ring-2 focus:ring-gold-500/20 placeholder-gray-600"
           />
         </div>
       </div>
 
       {error && (
-        <div className="mb-4 rounded-lg bg-gold-500/10 border border-gold-500/20 p-3 text-sm text-gold-300">
+        <div className="mb-4 rounded-lg bg-gold-500/10 border border-gold-500/20 p-3 text-sm text-brand-500">
           {error}
         </div>
       )}
@@ -193,7 +193,7 @@ export function CheckoutForm({
         {submitting ? "Placing Order..." : `Place Order — $${total.toFixed(2)}`}
       </button>
 
-      <p className="mt-3 text-center text-xs text-gray-500">
+      <p className="mt-3 text-center text-xs text-gray-400">
         You will be contacted to complete payment for this order.
       </p>
     </form>

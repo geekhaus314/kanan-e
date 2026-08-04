@@ -59,7 +59,7 @@ export default async function EmployeeLayout({
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-gray-500 hover:text-gray-900"
+                className="nav-link"
               >
                 {item.label}
               </Link>
@@ -68,14 +68,14 @@ export default async function EmployeeLayout({
           {tenantUser.role === "admin" && (
             <Link
               href={`/${merchant}/admin`}
-              className="text-sm font-medium text-gold-600 hover:text-gold-700"
+              className="text-sm font-medium text-brand-600 hover:text-brand-700"
             >
               {t("admin.title")}
             </Link>
           )}
           <Link
             href={`/${merchant}`}
-            className="ml-auto text-sm text-gray-400 hover:text-gray-600"
+            className="ml-auto text-sm text-gray-500 hover:text-brand-600"
           >
             {t("employee.backToStore")}
           </Link>

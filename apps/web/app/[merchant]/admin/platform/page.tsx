@@ -56,7 +56,7 @@ export default async function PlatformPage({
   return (
     <div>
       <div className="mb-2 flex items-center gap-3">
-        <span className="rounded-md bg-gray-800 px-2 py-0.5 text-[10px] font-black text-gold-400">
+        <span className="rounded-md bg-brand-600 px-2 py-0.5 text-[10px] font-black text-white">
           ROOT
         </span>
         <h1 className="text-3xl font-black text-gray-900">
@@ -88,7 +88,7 @@ export default async function PlatformPage({
         </div>
         <div className="rounded-xl border border-gray-200 bg-white p-6">
           <p className="text-sm text-gray-500">Total Orders</p>
-          <p className="text-3xl font-black text-gold-600">
+          <p className="text-3xl font-black text-brand-600">
             {totalOrders}
           </p>
         </div>

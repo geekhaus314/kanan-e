@@ -68,10 +68,10 @@ export default async function ProductsPage({
     <div className="min-h-screen bg-gradient-surface">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-10">
-          <h1 className="text-3xl font-black text-gray-100 sm:text-4xl">
+          <h1 className="text-3xl font-black text-gray-900 sm:text-4xl">
             {selectedCategory ? selectedCategory.name : "Product Catalog"}
           </h1>
-          <p className="mt-2 text-gray-400">
+          <p className="mt-2 text-gray-500">
             {selectedCategory
               ? `Browse ${selectedCategory.name.toLowerCase()} — wholesale pricing available`
               : "Browse our full wholesale catalog"}
@@ -84,7 +84,7 @@ export default async function ProductsPage({
             className={`rounded-full px-4 py-1.5 text-sm font-medium whitespace-nowrap transition-colors ${
               !category
                 ? "bg-gradient-brand text-gray-900"
-                : "bg-white/5 text-gray-400 hover:bg-white/10"
+                : "bg-gray-50 text-gray-500 hover:bg-white/10"
             }`}
           >
             All
@@ -96,7 +96,7 @@ export default async function ProductsPage({
               className={`rounded-full px-4 py-1.5 text-sm font-medium whitespace-nowrap transition-colors ${
                 String(cat.id) === category
                   ? "bg-gradient-brand text-gray-900"
-                  : "bg-white/5 text-gray-400 hover:bg-white/10"
+                  : "bg-gray-50 text-gray-500 hover:bg-white/10"
               }`}
             >
               {cat.name}
@@ -145,7 +145,7 @@ export default async function ProductsPage({
                   href={`/${merchant}/product/${product.id}`}
                   className="block"
                 >
-                  <div className="mb-3 flex aspect-square items-center justify-center overflow-hidden rounded-lg bg-white/5">
+                  <div className="mb-3 flex aspect-square items-center justify-center overflow-hidden rounded-lg bg-gray-50">
                     <ProductImage
                       imageUrl={product.imageUrl}
                       fallbackSrc={brandTileFor(product.sku)}
@@ -153,18 +153,18 @@ export default async function ProductsPage({
                       className="text-4xl"
                     />
                   </div>
-                  <p className="mb-1 font-mono text-xs text-gray-500">
+                  <p className="mb-1 font-mono text-xs text-gray-400">
                     {product.sku}
                   </p>
-                  <h3 className="mb-2 text-sm font-semibold leading-snug text-gray-100 line-clamp-2 min-h-[2.5rem]">
+                  <h3 className="mb-2 text-sm font-semibold leading-snug text-gray-900 line-clamp-2 min-h-[2.5rem]">
                     {product.name}
                   </h3>
                   <div>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-lg font-black text-gold-400">
+                      <span className="text-lg font-black text-brand-600">
                         ${parseFloat(product.basePrice.toString()).toFixed(2)}
                       </span>
-                      <span className="text-[10px] text-gray-500">/ea</span>
+                      <span className="text-[10px] text-gray-400">/ea</span>
                     </div>
                     {hasWholesaleDiscount && (
                       <p className="mt-0.5 text-[10px] text-emerald-400 font-medium">
@@ -193,7 +193,7 @@ export default async function ProductsPage({
 
         {products.length === 0 && (
           <div className="py-20 text-center">
-            <p className="text-gray-500">No products found in this category.</p>
+            <p className="text-gray-400">No products found in this category.</p>
           </div>
         )}
       </div>

@@ -44,22 +44,22 @@ export default async function WholesalePage({
         </div>
 
         {existing?.isWholesale ? (
-          <div className="rounded-xl border border-green-100 bg-green-50 p-6">
-            <p className="font-semibold text-green-800">
+          <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-6">
+            <p className="font-semibold text-emerald-700">
               Your wholesale account is {existing.licenseVerifiedAt ? "approved" : "pending review"}.
             </p>
-            <p className="mt-1 text-sm text-green-600">
+            <p className="mt-1 text-sm text-emerald-600">
               {existing.licenseVerifiedAt
                 ? "You have access to wholesale pricing."
                 : "We are reviewing your tobacco license. You will be notified when approved."}
             </p>
           </div>
         ) : existing?.tobaccoLicense ? (
-          <div className="rounded-xl border border-gold-100 bg-gold-50 p-6">
-            <p className="font-semibold text-gold-800">
+          <div className="rounded-xl border border-brand-100 bg-brand-50 p-6">
+            <p className="font-semibold text-brand-700">
               Application submitted — pending review.
             </p>
-            <p className="mt-1 text-sm text-gold-600">
+            <p className="mt-1 text-sm text-brand-600">
               Your tobacco license is being reviewed by our team.
             </p>
           </div>

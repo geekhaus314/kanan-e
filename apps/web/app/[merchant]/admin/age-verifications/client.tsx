@@ -132,7 +132,7 @@ export function AdminVerificationList({
                       ? "bg-green-100 text-green-800"
                       : record.verificationStatus === "rejected"
                       ? "bg-red-100 text-red-800"
-                      : "bg-gold-100 text-gold-800"
+                      : "bg-brand-100 text-brand-800"
                   }`}
                 >
                   {statusLabel(record.verificationStatus)}

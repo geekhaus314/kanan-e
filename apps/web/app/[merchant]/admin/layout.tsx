@@ -65,7 +65,7 @@ export default async function AdminLayout({
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-gray-500 hover:text-gray-900"
+                className="nav-link"
               >
                 {item.label}
               </Link>
@@ -73,7 +73,7 @@ export default async function AdminLayout({
           </nav>
           <Link
             href={`/${merchant}`}
-            className="mr-auto text-sm text-gray-400 hover:text-gray-600"
+            className="mr-auto text-sm text-gray-500 hover:text-brand-600"
           >
             {t("admin.backToStore")}
           </Link>

@@ -77,8 +77,8 @@ export function ProductForm({
     }
   };
 
-  const input = "w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-100 focus:border-gold-400 focus:outline-none";
-  const label = "mb-1 block text-xs font-medium text-gray-500";
+  const input = "w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-brand-400 focus:outline-none";
+  const label = "mb-1 block text-xs font-medium text-gray-400";
 
   return (
     <form onSubmit={submit} className="space-y-5">
@@ -129,11 +129,11 @@ export function ProductForm({
       </div>
 
       <div className="flex flex-wrap items-center gap-6">
-        <label className="flex items-center gap-2 text-sm text-gray-300">
+        <label className="flex items-center gap-2 text-sm text-gray-700">
           <input type="checkbox" checked={form.isAgeRestricted} onChange={(e) => set("isAgeRestricted", e.target.checked)} />
           21+ Age Restricted
         </label>
-        <label className="flex items-center gap-2 text-sm text-gray-300">
+        <label className="flex items-center gap-2 text-sm text-gray-700">
           <input type="checkbox" checked={form.isActive} onChange={(e) => set("isActive", e.target.checked)} />
           Active (visible in store)
         </label>

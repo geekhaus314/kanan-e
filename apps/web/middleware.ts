@@ -18,6 +18,22 @@ function parseAcceptLanguage(header: string | null): string | null {
 }
 
 export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // ── Block web admin access ──────────────────────────────────────
+  // Admin operations are handled exclusively via the Telegram bot.
+  // Set ADMIN_WEB_ENABLED=true in env to override (for dev/debugging).
+  const isAdminPath = pathname.includes("/admin");
+  const adminWebEnabled = process.env.ADMIN_WEB_ENABLED === "true";
+
+  if (isAdminPath && !adminWebEnabled) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/admin-disabled";
+    url.search = "";
+    return NextResponse.redirect(url);
+  }
+
+  // ── Locale cookie detection ─────────────────────────────────────
   const response = NextResponse.next();
 
   const hasLocaleCookie = request.cookies.has(COOKIE_NAME);
@@ -38,6 +54,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|images|robots.txt).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|images|robots.txt|admin-disabled).*)",
   ],
 };
