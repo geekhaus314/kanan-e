@@ -1,0 +1,3 @@
+Trigger Vercel redeploy
+
+This file was added by an automated assistant to trigger a redeploy.
