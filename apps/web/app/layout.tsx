@@ -8,6 +8,7 @@ import {
   isRtl,
   type LocaleCode,
 } from "@/locales";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "KananOS — United Distribution | Premium Wholesale Platform",
@@ -58,6 +59,7 @@ export default async function RootLayout({
         <LocaleProvider initialLocale={locale}>
           {children}
         </LocaleProvider>
+        <Analytics />
       </body>
     </html>
   );
