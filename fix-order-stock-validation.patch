@@ -1,0 +1,74 @@
+diff --git a/apps/web/app/api/orders/route.ts b/apps/web/app/api/orders/route.ts
+index 418b338..47921b8 100644
+--- a/apps/web/app/api/orders/route.ts
++++ b/apps/web/app/api/orders/route.ts
+@@ -1,7 +1,7 @@
+ import { NextRequest, NextResponse } from "next/server";
+ import { auth } from "@/lib/auth";
+ import { db, schema } from "@kananos/database";
+-import { eq, and } from "drizzle-orm";
++import { eq, and, inArray, sql } from "drizzle-orm";
+ 
+ export async function POST(request: NextRequest) {
+   const session = await auth();
+@@ -43,6 +43,42 @@ export async function POST(request: NextRequest) {
+ 
+     const userId = Number(session.user.id);
+ 
++    // Validate stock levels and verify active state for all items
++    const productIds = items.map(
++      (item: { productId: number; quantity: number; price: number }) => item.productId
++    );
++
++    const dbProducts = await db
++      .select()
++      .from(schema.products)
++      .where(
++        and(
++          inArray(schema.products.id, productIds),
++          eq(schema.products.tenantId, tenant.id),
++          eq(schema.products.isActive, true)
++        )
++      );
++
++    const productMap = new Map(dbProducts.map((p) => [p.id, p]));
++
++    for (const item of items) {
++      const product = productMap.get(item.productId);
++      if (!product) {
++        return NextResponse.json(
++          { error: `Product ID ${item.productId} not found or inactive` },
++          { status: 400 }
++        );
++      }
++      if (product.stockLevel < item.quantity) {
++        return NextResponse.json(
++          {
++            error: `Insufficient stock for '${product.name}'. ${product.stockLevel} units available, ${item.quantity} requested.`,
++          },
++          { status: 400 }
++        );
++      }
++    }
++
+     const [order] = await db
+       .insert(schema.orders)
+       .values({
+@@ -75,6 +111,17 @@ export async function POST(request: NextRequest) {
+ 
+     await db.insert(schema.orderItems).values(orderItems);
+ 
++    // Decrement stock levels for ordered products
++    for (const item of items) {
++      await db
++        .update(schema.products)
++        .set({
++          stockLevel: sql`${schema.products.stockLevel} - ${item.quantity}`,
++          updatedAt: new Date(),
++        })
++        .where(eq(schema.products.id, item.productId));
++    }
++
+     await db
+       .delete(schema.cartItems)
+       .where(

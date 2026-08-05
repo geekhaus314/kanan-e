@@ -1,15 +1,13 @@
+import path from "path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@kananos/database", "@kananos/validations"],
+  transpilePackages: ["@kananos/database"],
   serverExternalPackages: ["postgres"],
+  outputFileTracingRoot: path.join(__dirname, "../../"),
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**.r2.cloudflarestorage.com",
-      },
-    ],
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; img-src 'self' data: https:; script-src 'none'; style-src 'unsafe-inline';",
   },
 };
 

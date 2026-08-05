@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import { getTranslations } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { BrandLogo } from "@/components/BrandLogo";
 import { CartBadge } from "@/components/CartBadge";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { PromoBanner } from "@/components/PromoBanner";
@@ -30,15 +31,13 @@ export default async function MerchantLayout({
             href={`/${merchant}`}
             className="flex items-center gap-3 group"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-brand transition-transform group-hover:scale-105">
-              <span className="text-xs font-black text-white">UD</span>
-            </div>
+            <BrandLogo className="h-9 w-auto sm:h-10" />
             <div className="hidden sm:block">
               <div className="text-xs font-bold tracking-tight text-gray-900">
-                {t("home.heroSubtitle")}
+                United Distribution
               </div>
               <div className="text-[10px] tracking-widest uppercase text-gray-400">
-                {t("common.wholesale")}
+                The Sultans of B2B
               </div>
             </div>
           </Link>
@@ -89,9 +88,13 @@ export default async function MerchantLayout({
       <main>{children}</main>
 
       <footer className="border-t border-gray-200 bg-gray-50 py-8 text-center">
-        <p className="text-xs text-gray-400">
-          © {new Date().getFullYear()} Kanan Enterprises LLC. All rights reserved.
-        </p>
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-3 px-4">
+          <BrandLogo className="h-7 opacity-80 [&_img]:!h-full [&_img]:!w-auto" />
+          <p className="text-xs text-gray-400">
+            © {new Date().getFullYear()} Kanan Enterprises LLC. All rights
+            reserved.
+          </p>
+        </div>
       </footer>
     </div>
   );
