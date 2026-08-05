@@ -12,6 +12,10 @@ export default async function SignInPage({
   const tenant = await getTenantBySlug(merchant);
   if (!tenant) notFound();
 
+  const hasGoogle =
+    Boolean(process.env.AUTH_GOOGLE_ID) &&
+    Boolean(process.env.AUTH_GOOGLE_SECRET);
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-sm">
@@ -23,7 +27,7 @@ export default async function SignInPage({
           <p className="mt-1 text-sm text-gray-500">{tenant.name}</p>
         </div>
         <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8">
-          <SignInForm merchant={merchant} />
+          <SignInForm merchant={merchant} hasGoogle={hasGoogle} />
         </div>
       </div>
     </div>
