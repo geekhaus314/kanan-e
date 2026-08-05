@@ -5,6 +5,7 @@ import { getTranslations } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 import { eq, and, asc, desc, sql } from "drizzle-orm";
 import Link from "next/link";
+import { BrandLogo } from "@/components/BrandLogo";
 import { ProductImage } from "@/components/ProductImage";
 
 const BRAND_TILE: Record<string, string> = {
@@ -83,6 +84,9 @@ export default async function MerchantHome({
             <br />
             <span className="text-gradient">{t("home.heroSubtitle")}</span>
           </h1>
+          <p className="mx-auto mt-3 text-sm font-semibold tracking-widest uppercase text-brand-600">
+            The Sultans of B2B
+          </p>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-500 sm:text-xl">
             {t("home.heroDescription")}
           </p>
@@ -230,7 +234,7 @@ export default async function MerchantHome({
         {/* FOOTER */}
         <footer className="mt-24 border-t border-gray-200 py-10 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand text-sm font-black text-white">UD</div>
+            <BrandLogo className="h-6 w-auto" />
             <span className="text-sm font-semibold text-gray-400">{t("home.heroSubtitle")}</span>
           </div>
           <p className="text-xs text-gray-400">

@@ -1,9 +1,9 @@
 import {
   supportedLocales,
   defaultLocale,
+  locales,
   type LocaleCode,
 } from "@/locales";
-import * as localeData from "@/locales";
 
 export function parseAcceptLanguage(header: string | null): LocaleCode {
   if (!header) return defaultLocale;
@@ -50,7 +50,7 @@ function resolveKey(
 }
 
 export function createTranslator(locale: LocaleCode) {
-  const dict = (localeData as Record<string, unknown>)[locale] as Record<string, unknown> ?? {};
+  const dict = locales[locale] as unknown as Record<string, unknown> ?? {};
 
   function t(path: string, vars?: Record<string, string | number>): string {
     let result = resolveKey(dict, path);
